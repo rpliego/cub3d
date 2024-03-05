@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/05 15:11:24 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/05 21:31:33 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,32 @@ void	init_parser(t_parser *pars)
 	pars->ceiling = NULL;
 }
 
-void	trim_info(t_parser *pars)
-{
-	int	i;
-
-	i = 0;
-	while (pars->map[i] && pars)
-	{
-		
-	}
-	
-}
-
 int	parser(char *file, t_parser *pars)
 {
 	init_parser(pars);
-	extract_map(file, pars);
-	//trim_info(pars);
-	check_elements(pars);
-	//if (pars->n_elements < 6)
-
+	if (extract_map(file, pars) == KO)
+	{
+		printf("errororor\n");
+		exit(1);
+	}
+	if (check_elements(pars) == KO) //acordarme de luego checkear si solo hay 1 y 0 en parse->map
+	{
+		printf("errrorrr\n");
+		exit(2);
+	}
 	printf("%i\n\n", pars->n_elements);
 	printf("%s", pars->north);
-	printf("%s\n", pars->south);
+	printf("%s", pars->south);
 	printf("%s", pars->west);
-	printf("%s\n", pars->east);
+	printf("%s", pars->east);
 	printf("%s", pars->floor);
-	printf("%s\n", pars->ceiling);
+	printf("%s", pars->ceiling);
+
+	while (*pars->map)
+	{
+		printf("%s", *pars->map);
+		pars->map++;
+	}
+	
 	return (OK);
 }

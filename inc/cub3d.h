@@ -23,6 +23,7 @@ typedef struct s_parser
 	char *east;
 	char *floor;
 	char *ceiling;
+	char **board;
 }		t_parser;
 
 int		error_msg(int exit, char *msg);

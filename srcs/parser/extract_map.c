@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:57:41 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/04 17:28:50 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/05 20:16:52 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ int	extract_map(char *file, t_parser *pars)
 	}
 	pars->map[i] = NULL;
 	close(fd);
+	return (OK);
 }
