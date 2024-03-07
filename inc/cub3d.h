@@ -31,5 +31,7 @@ int		parser(char *map, t_parser *prser);
 int		extract_map(char *file, t_parser *pars);
 int		check_elements(t_parser *pars);
 int		clean_map(t_parser *pars);
+int		validate_map(t_parser *pars);
+int		validate_info_map(t_parser *pars);
 
 #endif

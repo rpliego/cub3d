@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   save_board.c                                       :+:      :+:    :+:   */
+/*   clean_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:13:12 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/07 13:37:21 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/07 14:00:03 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	find_start_board(t_parser *pars)
 		free(*pars->map);
 		pars->map++;
 	}
-	//save in pars->board;
 }
 
 int	clean_map(t_parser *pars)
@@ -55,10 +54,5 @@ int	clean_map(t_parser *pars)
 	if (valid_characters(pars->map) == KO)
 		return (KO);
 	find_start_board(pars);
-	while (*pars->map)
-	{
-		printf("%s", *pars->map);
-		pars->map++;
-	}
 	return (OK);
 }

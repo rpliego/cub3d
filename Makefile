@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 RM = rm -rf
 
 
@@ -9,7 +9,9 @@ SRC =		srcs/main.c \
 			srcs/parser/extract_map.c \
 			srcs/parser/parser.c \
 			srcs/parser/check_elements.c \
-			srcs/parser/clean_map.c
+			srcs/parser/clean_map.c \
+			srcs/parser/validate_info.c \
+			srcs/parser/validate_map.c
 
 
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/07 13:38:31 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/07 17:33:35 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,32 @@ int	parser(char *file, t_parser *pars)
 	if (check_elements(pars) == KO)
 	{
 		printf("error checking elements\n");
-		exit(2);
+		//exit(2);
 	}
 	if (clean_map(pars) == KO)
 	{
 		printf("error saving the board\n");
 		exit(3);
 	}
-	// printf("%i\n\n", pars->n_elements);
-	// printf("%s", pars->north);
-	// printf("%s", pars->south);
-	// printf("%s", pars->west);
-	// printf("%s", pars->east);
-	// printf("%s", pars->floor);
-	// printf("%s", pars->ceiling);
-
-	while (*pars->map)
+	if (validate_map(pars) == KO)
 	{
-		printf("%s", *pars->map);
-		pars->map++;
+		printf("error validating map\n");
+		exit(4);
 	}
+	// printf("%i\n\n", pars->n_elements);
+	//pars->north = ft_strtrim(pars->north, " ");
+	printf("%s", pars->north);
+	printf("%s", pars->south);
+	printf("%s", pars->west);
+	printf("%s", pars->east);
+	printf("%s", pars->floor);
+	printf("%s", pars->ceiling);
+	// while (*pars->map)
+	// {
+	// 	printf("%s", *pars->map);
+	// 	pars->map++;
+	// }
+
 	
 	return (OK);
 }

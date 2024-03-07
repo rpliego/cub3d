@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:22 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/07 11:20:11 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/07 17:33:25 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	check_elements(t_parser *pars)
 			break ;
 	}
 	if (pars->n_elements != 6)
-		return(KO);	
+		return(KO);
+	if (validate_info_map(pars) == KO)
+		return (KO);
 	return (OK);
 }

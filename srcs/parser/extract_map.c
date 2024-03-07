@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:57:41 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/05 20:16:52 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/07 16:48:44 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	extract_map(char *file, t_parser *pars)
 	i = 0;
 	pars->rows = count_rows(file);
 	if (pars->rows <= 8)
-		return (KO); //error
+		return (KO);
 	pars->map = malloc((pars->rows + 1) * sizeof(char *));
 	fd = open(file, O_RDONLY);
 	while (i < pars->rows)
