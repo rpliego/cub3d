@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/05 21:31:33 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/07 13:38:31 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,26 @@ int	parser(char *file, t_parser *pars)
 	init_parser(pars);
 	if (extract_map(file, pars) == KO)
 	{
-		printf("errororor\n");
+		printf("error extracting\n");
 		exit(1);
 	}
-	if (check_elements(pars) == KO) //acordarme de luego checkear si solo hay 1 y 0 en parse->map
+	if (check_elements(pars) == KO)
 	{
-		printf("errrorrr\n");
+		printf("error checking elements\n");
 		exit(2);
 	}
-	printf("%i\n\n", pars->n_elements);
-	printf("%s", pars->north);
-	printf("%s", pars->south);
-	printf("%s", pars->west);
-	printf("%s", pars->east);
-	printf("%s", pars->floor);
-	printf("%s", pars->ceiling);
+	if (clean_map(pars) == KO)
+	{
+		printf("error saving the board\n");
+		exit(3);
+	}
+	// printf("%i\n\n", pars->n_elements);
+	// printf("%s", pars->north);
+	// printf("%s", pars->south);
+	// printf("%s", pars->west);
+	// printf("%s", pars->east);
+	// printf("%s", pars->floor);
+	// printf("%s", pars->ceiling);
 
 	while (*pars->map)
 	{

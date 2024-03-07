@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:22 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/05 21:34:54 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/07 11:20:11 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,37 @@ static	int	check_f_c(t_parser *pars, char *parse)
 			return (KO);
 		pars->n_elements += 1;
 	}
-	//if (parse[0] != '\n' && parse[0] != ' ')
-
 	return (OK);
+}
+
+int	trash_inside(char *str)
+{
+	if (str[0] == '\n' && str[1] == '\0')
+		return (OK);
+	return (KO);
 }
 
 int	check_elements(t_parser *pars)
 {
 	int	aux;
 
-	aux = -1;
 	while (*pars->map)
 	{
+		aux = pars->n_elements;
 		if (check_no_so(pars, *pars->map) == KO)
 			return (KO);
 		if (check_we_ea(pars, *pars->map) == KO)
 			return (KO);
 		if (check_f_c(pars, *pars->map) == KO)
 			return (KO);
+		if (trash_inside(*pars->map) == KO && aux == pars->n_elements)
+			return (KO);
+		free(*pars->map);
 		pars->map++;
 		if (pars->n_elements == 6)
 			break ;
 	}
-	if (!pars->east)
+	if (pars->n_elements != 6)
 		return(KO);	
 	return (OK);
 }

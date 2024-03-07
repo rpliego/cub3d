@@ -23,7 +23,6 @@ typedef struct s_parser
 	char *east;
 	char *floor;
 	char *ceiling;
-	char **board;
 }		t_parser;
 
 int		error_msg(int exit, char *msg);
@@ -31,5 +30,6 @@ int		check_extension(char *str);
 int		parser(char *map, t_parser *prser);
 int		extract_map(char *file, t_parser *pars);
 int		check_elements(t_parser *pars);
+int		clean_map(t_parser *pars);
 
 #endif

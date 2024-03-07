@@ -8,7 +8,8 @@ SRC =		srcs/main.c \
 			srcs/utils/errors.c \
 			srcs/parser/extract_map.c \
 			srcs/parser/parser.c \
-			srcs/parser/check_elements.c
+			srcs/parser/check_elements.c \
+			srcs/parser/clean_map.c
 
 
 OBJ = $(SRC:.c=.o)
