@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:56:49 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/07 17:32:40 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/07 20:57:10 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,20 @@
 void	trim_info(t_parser *pars)
 {
 	pars->north = ft_strtrim(pars->north, " ");
+	pars->north = ft_strtrim(pars->north, "\n");
 	pars->south = ft_strtrim(pars->south, " ");
+	pars->south = ft_strtrim(pars->south, "\n");
 	pars->west = ft_strtrim(pars->west, " ");
+	pars->west = ft_strtrim(pars->west, "\n");
 	pars->east = ft_strtrim(pars->east, " ");
+	pars->east = ft_strtrim(pars->east, "\n");
 	pars->floor = ft_strtrim(pars->floor, " ");
+	pars->floor = ft_strtrim(pars->floor, "\n");
 	pars->ceiling = ft_strtrim(pars->ceiling, " ");
+	pars->ceiling = ft_strtrim(pars->ceiling, "\n");
+	// if (!pars->north || !pars->south || !pars->west || !pars->east
+	// 	|| !pars->floor || !pars->ceiling)
+	//return (KO);
 }
 
 int	path_textures(t_parser *pars)
@@ -45,17 +54,51 @@ int	path_textures(t_parser *pars)
 	return (OK);
 }
 
-int	rgb_check(t_parser *pars)
+int	valid_rgb(int *floor, int *ceiling)
 {
-	
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		if (floor[i] < 0 || floor[i] > 255)
+			return (KO);
+		if (ceiling[i] < 0 || ceiling[i] > 255)
+			return (KO);
+		i++;
+	}
+	return (OK);
+}
+
+int	rgb_check(char *floor, char *ceiling)
+{
+	int	int_f[3];
+	int	int_c[3];
+	int	i;
+
+	if (ft_strlen(floor) > 11 || ft_strlen(floor) < 5)
+		return (KO);
+	if (ft_strlen(ceiling) > 11 || ft_strlen(ceiling) < 5)
+		return (KO);
+	if (check_comma_rgb(floor, ceiling) == KO)
+		return (KO);
+	i = -1;
+	while (++i < 3)
+	{
+		int_f[i] = mod_atoi(floor, i);
+		int_c[i] = mod_atoi(ceiling, i);
+	}
+	if (valid_rgb(int_f, int_c) == KO)
+		return (KO);
+	return (OK);
 }
 
 int	validate_info_map(t_parser *pars)
 {
 	trim_info(pars); //protect mallocs
-	if (path_textures(pars) == KO)
-		return (KO);
-	if (rgb_check(pars) == KO)
+	// if (path_textures(pars) == KO)
+	// 	return (KO);
+	if (rgb_check(pars->floor, pars->ceiling) == KO)
 		return (KO);
 	return (OK);
 }

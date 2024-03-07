@@ -34,4 +34,8 @@ int		clean_map(t_parser *pars);
 int		validate_map(t_parser *pars);
 int		validate_info_map(t_parser *pars);
 
+//~~~~~~~~~~~~~UTILS~~~~~~~~~~~~~~~~//
+int		mod_atoi(char *str, int comma);
+int		check_comma_rgb(char *floor, char *ceiling);
+
 #endif

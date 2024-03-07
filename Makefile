@@ -6,6 +6,7 @@ RM = rm -rf
 
 SRC =		srcs/main.c \
 			srcs/utils/errors.c \
+			srcs/utils/utils_parser.c \
 			srcs/parser/extract_map.c \
 			srcs/parser/parser.c \
 			srcs/parser/check_elements.c \

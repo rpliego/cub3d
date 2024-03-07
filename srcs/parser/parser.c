@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/07 17:33:35 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/07 18:18:32 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ int	parser(char *file, t_parser *pars)
 		exit(4);
 	}
 	// printf("%i\n\n", pars->n_elements);
-	//pars->north = ft_strtrim(pars->north, " ");
-	printf("%s", pars->north);
-	printf("%s", pars->south);
-	printf("%s", pars->west);
-	printf("%s", pars->east);
-	printf("%s", pars->floor);
-	printf("%s", pars->ceiling);
+	printf("%s\n", pars->north);
+	printf("%s\n", pars->south);
+	printf("%s\n", pars->west);
+	printf("%s\n", pars->east);
+	printf("%s\n", pars->floor);
+	printf("%s\n", pars->ceiling);
 	// while (*pars->map)
 	// {
 	// 	printf("%s", *pars->map);
