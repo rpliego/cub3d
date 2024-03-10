@@ -23,9 +23,9 @@ typedef struct s_parser
 	char *east;
 	char *floor;
 	char *ceiling;
+	char player;
 }		t_parser;
 
-int		error_msg(int exit, char *msg);
 int		check_extension(char *str);
 int		parser(char *map, t_parser *prser);
 int		extract_map(char *file, t_parser *pars);
@@ -37,5 +37,7 @@ int		validate_info_map(t_parser *pars);
 //~~~~~~~~~~~~~UTILS~~~~~~~~~~~~~~~~//
 int		mod_atoi(char *str, int comma);
 int		check_comma_rgb(char *floor, char *ceiling);
+int		error_msg(int exit, char *msg);
+int		find_n_rows(char **map);
 
 #endif

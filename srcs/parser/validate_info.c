@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:56:49 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/07 20:57:10 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/10 17:58:23 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	trim_info(t_parser *pars)
 {
-	pars->north = ft_strtrim(pars->north, " ");
 	pars->north = ft_strtrim(pars->north, "\n");
-	pars->south = ft_strtrim(pars->south, " ");
+	pars->north = ft_strtrim(pars->north, " ");
 	pars->south = ft_strtrim(pars->south, "\n");
-	pars->west = ft_strtrim(pars->west, " ");
+	pars->south = ft_strtrim(pars->south, " ");
 	pars->west = ft_strtrim(pars->west, "\n");
-	pars->east = ft_strtrim(pars->east, " ");
+	pars->west = ft_strtrim(pars->west, " ");
 	pars->east = ft_strtrim(pars->east, "\n");
-	pars->floor = ft_strtrim(pars->floor, " ");
+	pars->east = ft_strtrim(pars->east, " ");
 	pars->floor = ft_strtrim(pars->floor, "\n");
-	pars->ceiling = ft_strtrim(pars->ceiling, " ");
+	pars->floor = ft_strtrim(pars->floor, " ");
 	pars->ceiling = ft_strtrim(pars->ceiling, "\n");
+	pars->ceiling = ft_strtrim(pars->ceiling, " ");
 	// if (!pars->north || !pars->south || !pars->west || !pars->east
 	// 	|| !pars->floor || !pars->ceiling)
 	//return (KO);

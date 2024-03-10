@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_utils.c                                      :+:      :+:    :+:   */
+/*   utils_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 18:52:27 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/07 19:30:42 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/10 18:24:49 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	find_n_rows(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+			j++;
+		i++;
+	}
+	return (i);
+}
 
 void	moded_part(char *str, int comma, int *i)
 {
@@ -67,7 +83,7 @@ int	check_comma_rgb(char *floor, char *ceiling)
 		if (ceiling[i] == ',')
 			++comma_n;
 	}
-	if (comma_n != 6)
+	if (comma_n != 4)
 		return (KO);
 	return (OK);
 }
