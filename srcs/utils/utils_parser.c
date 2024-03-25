@@ -6,11 +6,31 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 18:52:27 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/10 18:24:49 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/25 18:28:38 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	find_n_columms(char **map)
+{
+	int	i;
+	int	j;
+	int	ret;
+
+	i = 0;
+	ret = 0;
+	while (map[i] != NULL)
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+			j++;
+		if (j > ret)
+			ret = j;
+		i++;
+	}
+	return (ret);
+}
 
 int	find_n_rows(char **map)
 {

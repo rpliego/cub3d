@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/10 18:37:50 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/24 16:02:27 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	parser(char *file, t_parser *pars)
 	// printf("%s\n", pars->ceiling);
 	// while (*pars->map)
 	// {
-	// 	printf("%s", *pars->map);
+	// 	printf("%s\n", *pars->map);
 	// 	pars->map++;
 	// }
 	return (OK);

@@ -24,6 +24,8 @@ typedef struct s_parser
 	char *floor;
 	char *ceiling;
 	char player;
+	int	x_player;
+	int	y_player;
 }		t_parser;
 
 int		check_extension(char *str);
@@ -39,5 +41,6 @@ int		mod_atoi(char *str, int comma);
 int		check_comma_rgb(char *floor, char *ceiling);
 int		error_msg(int exit, char *msg);
 int		find_n_rows(char **map);
+int		find_n_columms(char **map);
 
 #endif
