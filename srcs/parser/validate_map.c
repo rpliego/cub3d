@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:01:19 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/25 19:56:15 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/26 20:25:20 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	find_player(t_parser *pars, char **map)
 				pars->player = map[i][j];
 				pars->x_player = i;
 				pars->y_player = j;
-				printf("player_x-->%i\nplayer_y-->%i\n", pars->x_player, pars->y_player);
 			}
 			j++;
 		}
@@ -146,32 +145,54 @@ void	trim_map(t_parser *pars)
 	}
 }
 
-void	dfs(t_parser *pars, int	x, int y, int *flag, char *aux_bool)
+void	dfs(t_parser *pars, int	x, int y, int *flag, char **aux_bool)
 {
 	if (x < 0 || y < 0 || x > pars->rows || y > pars->columms)
 	{
-		printf("x-->%i\ny-->%i\n", x, y);
 		*flag = 1;
 		return ;
 	}
-	if (aux_bool[x * pars->columms + y] == '1' || pars->map[x][y] == '1')
+	if (aux_bool[x][y] == '1' || pars->map[x][y] == '1')
 		return ;
-	aux_bool[x * pars->columms + y] = '1';
+	aux_bool[x][y] = '1';
 	dfs(pars, x + 1, y, flag, aux_bool);
 	dfs(pars, x, y + 1, flag, aux_bool);
 	dfs(pars, x - 1, y, flag, aux_bool);
 	dfs(pars, x, y - 1, flag, aux_bool);
 }
 
+int	init_bool(t_parser *pars, char ***aux_bool)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	*aux_bool = malloc((4 + 1) * sizeof(char *));
+	if (!(*aux_bool))
+		return KO;
+	(*aux_bool)[pars->rows] = NULL;
+	while (i < pars->rows + 1)
+	{
+		j = -1;
+		(*aux_bool)[i] = malloc(ft_strlen(pars->map[i]) + 1);
+		if (!(*aux_bool)[i])
+			return (KO); //free____all;
+		while (pars->map[i][++j])
+			(*aux_bool)[i][j] = '0';
+		(*aux_bool)[i][j] = '\0';
+		i++;
+	}
+	return (OK);
+}
+
 int	validate_map(t_parser *pars)
 {
 	int	open_map;
+	char **aux_bool;
 
 	open_map = 0;
-	pars->rows = find_n_rows(pars->map); //!!!!!!REMEMBER THIS!!!!!!!!
-	pars->columms = find_n_columms(pars->map);
-	printf("\ncolumnas--->%i\nrows--->%i\n", pars->columms, pars->rows);
-
+	pars->rows = find_n_rows(pars->map) - 1; //!!!!!!REMEMBER THIS!!!!!!!!
+	pars->columms = find_n_columms(pars->map) - 1;
 	//pars->rows -= 1;
 	// if (top_row(pars) == KO || bottom_row(pars) == KO)
 	// 	return (KO);
@@ -180,15 +201,7 @@ int	validate_map(t_parser *pars)
 		return (KO);
 	if (find_player(pars, pars->map) == KO)
 		return (KO);
-
-	char *aux_bool;
-	int	i = -1;
-
-	aux_bool = malloc((pars->rows * pars->columms) * sizeof(char));
-	if (!aux_bool)
-		return KO;
-	while (aux_bool[++i])
-		aux_bool[i] = '0';
+	init_bool(pars, &aux_bool);
 	dfs(pars, pars->x_player, pars->y_player, &open_map, aux_bool);
 	if (open_map == 1)
 		printf("mapa abiertoooo\n");
