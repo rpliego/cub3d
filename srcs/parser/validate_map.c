@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:01:19 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/27 20:09:03 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/27 21:43:29 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ int	validate_map(t_parser *pars)
 		return (KO);
 	init_bool(pars, &aux_bool);
 	dfs(pars, pars->x_player, pars->y_player, &open_map, aux_bool);
-	// exit(1);
+
+	int	i = -1;
+	while (aux_bool[++i])
+		free(aux_bool[i]);
+	free(aux_bool);
 	if (open_map == 1)
 		printf("mapa abiertoooo\n");
 	else

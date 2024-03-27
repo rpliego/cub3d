@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/27 21:19:35 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/27 21:52:17 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,21 @@ void	init_parser(t_parser *pars)
 
 int	parser(char *file, t_parser *pars)
 {
+	int	i = 0;
+
 	init_parser(pars);
 	if (extract_map(file, pars) == KO)
 	{
 		printf("error extracting\n");
 		exit(1);
 	}
-	if (check_elements(pars) == KO)
+	i = check_elements(pars);
+	if (i == KO)
 	{
 		printf("error checking elements\n");
 		exit(2);
 	}
-	if (clean_map(pars) == KO)
+	if (clean_map(pars, i) == KO)
 	{
 		printf("error saving the board\n");
 		exit(3);
@@ -49,26 +52,27 @@ int	parser(char *file, t_parser *pars)
 		printf("error validating map\n");
 		exit(4);
 	}
-	// printf("%i\n\n", pars->n_elements);
-	// printf("%s\n", pars->north);
-	// printf("%s\n", pars->south);
-	// printf("%s\n", pars->west);
-	// printf("%s\n", pars->east);
-	// printf("%s\n", pars->floor);
-	// printf("%s\n", pars->ceiling);
-	// while (*pars->map)
-	// {
-	// 	printf("%s\n", *pars->map);
-	// 	pars->map++;
-	// }
+	printf("%i\n\n", pars->n_elements);
+	printf("%s\n", pars->north);
+	printf("%s\n", pars->south);
+	printf("%s\n", pars->west);
+	printf("%s\n", pars->east);
+	printf("%s\n", pars->floor);
+	printf("%s\n\n", pars->ceiling);
+	int	x = -1;
+	while (pars->map[++x])
+		printf("%s\n", pars->map[x]);
 	free(pars->north);
 	free(pars->south);
 	free(pars->west);
+	free(pars->east);
 	free(pars->floor);
 	free(pars->ceiling);
-	int	x = -1;
+	x = -1;
 	while (pars->map[++x])
+	{
 		free(pars->map[x]);
-	//free(pars->map);
+	}
+	free(pars->map);
 	return (OK);
 }
