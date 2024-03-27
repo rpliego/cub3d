@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/24 16:02:27 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/27 21:19:35 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	parser(char *file, t_parser *pars)
 	if (check_elements(pars) == KO)
 	{
 		printf("error checking elements\n");
-		//exit(2);
+		exit(2);
 	}
 	if (clean_map(pars) == KO)
 	{
@@ -61,5 +61,14 @@ int	parser(char *file, t_parser *pars)
 	// 	printf("%s\n", *pars->map);
 	// 	pars->map++;
 	// }
+	free(pars->north);
+	free(pars->south);
+	free(pars->west);
+	free(pars->floor);
+	free(pars->ceiling);
+	int	x = -1;
+	while (pars->map[++x])
+		free(pars->map[x]);
+	//free(pars->map);
 	return (OK);
 }

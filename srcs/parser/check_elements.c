@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:22 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/10 17:54:04 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/27 20:08:42 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,23 @@ int	trash_inside(char *str)
 	return (KO);
 }
 
+void	trim_to_check(t_parser *pars)
+{
+	int	i;
+
+	i = 0;
+	while (pars->map[i])
+	{
+		pars->map[i] = ft_strtrim(pars->map[i], " ");
+		i++;
+	}
+}
+
 int	check_elements(t_parser *pars)
 {
 	int	aux;
 
+	trim_to_check(pars);
 	while (*pars->map)
 	{
 		aux = pars->n_elements;
