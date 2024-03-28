@@ -6,13 +6,13 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:13:12 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/27 21:41:41 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/28 19:53:01 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	valid_characters(char **map, int i)
+void	valid_characters(char **map, int i)
 {
 	int		j;
 	char	aux;
@@ -26,31 +26,41 @@ int	valid_characters(char **map, int i)
 			if (aux != '0' && aux != '1' && aux != ' ' && aux != 'N'
 				&& aux != 'S' && aux != 'E' && aux != 'W' && aux != '\n'
 				&& aux != '\0')
-				return (KO);
+				error_parser("Invalid characters in map");
 			j++;
 		}
 		i++;
 	}
-	return (OK);
 }
 
-void	find_start_board(t_parser *pars)
+char	**find_start_board(t_parser *pars, int start)
 {
+	char **board;
 	int	i;
 
-	while (*pars->map)
+	i = 0;
+	while (pars->map[i])
+		i++;
+	board = malloc((i - start + 1) * sizeof(char *));
+	if (!board)
+		error_parser("Malloc failed");
+	i = 0;
+	while (pars->map[start])
 	{
-		if (*pars->map[0] != '\n')
-			break ;
-		free(*pars->map);
-		pars->map++;
+		board[i] = ft_strdup(pars->map[start]);
+		if (!board[i])
+			error_parser("Malloc failed");
+		i++;
+		start++;
 	}
+	return (board);
 }
 
-int	clean_map(t_parser *pars, int i)
+void	clean_map(t_parser *pars, int i)
 {
-	if (valid_characters(pars->map, i) == KO)
-		return (KO);
-	find_start_board(pars);
-	return (OK);
+	int	j;
+
+	j = -1;
+	valid_characters(pars->map, i);
+	pars->board = find_start_board(pars, i);
 }

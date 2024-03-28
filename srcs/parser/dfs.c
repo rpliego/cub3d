@@ -6,13 +6,13 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:57:06 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/26 21:27:06 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/28 19:56:15 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	init_bool(t_parser *pars, char ***aux_bool)
+void	init_bool(t_parser *pars, char ***aux_bool)
 {
 	int	i;
 	int	j;
@@ -20,20 +20,19 @@ int	init_bool(t_parser *pars, char ***aux_bool)
 	i = 0;
 	*aux_bool = malloc((pars->rows + 1) * sizeof(char *));
 	if (!(*aux_bool))
-		return KO;
+		error_parser("Malloc failed");
 	(*aux_bool)[pars->rows] = NULL;
 	while (i < pars->rows + 1)
 	{
 		j = -1;
-		(*aux_bool)[i] = malloc(ft_strlen(pars->map[i]) + 1);
+		(*aux_bool)[i] = malloc(ft_strlen(pars->board[i]) + 1);
 		if (!(*aux_bool)[i])
-			return (KO); //free____all;
-		while (pars->map[i][++j])
+			error_parser("Malloc failed");
+		while (pars->board[i][++j])
 			(*aux_bool)[i][j] = '0';
 		(*aux_bool)[i][j] = '\0';
 		i++;
 	}
-	return (OK);
 }
 
 void	dfs(t_parser *pars, int	x, int y, int *flag, char **aux_bool)
@@ -43,7 +42,7 @@ void	dfs(t_parser *pars, int	x, int y, int *flag, char **aux_bool)
 		*flag = 1;
 		return ;
 	}
-	if (aux_bool[x][y] == '1' || pars->map[x][y] == '1')
+	if (aux_bool[x][y] == '1' || pars->board[x][y] == '1')
 		return ;
 	aux_bool[x][y] = '1';
 	dfs(pars, x + 1, y, flag, aux_bool);

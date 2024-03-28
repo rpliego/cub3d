@@ -26,27 +26,28 @@ typedef struct s_parser
 	char player;
 	int	x_player;
 	int	y_player;
+	char **board;
 }		t_parser;
 
 
 //~~~~~~~~~~~~~PARSER~~~~~~~~~~~~~~~~//
-int		check_extension(char *str);
-int		parser(char *map, t_parser *prser);
-int		extract_map(char *file, t_parser *pars);
+void	check_extension(char *str);
+void	parser(char *map, t_parser *prser);
+void	extract_map(char *file, t_parser *pars);
 int		check_elements(t_parser *pars);
-int		clean_map(t_parser *pars, int i);
-int		validate_map(t_parser *pars);
-int		validate_info_map(t_parser *pars);
+void	clean_map(t_parser *pars, int i);
+void	validate_map(t_parser *pars);
+void	validate_info_map(t_parser *pars);
 void	dfs(t_parser *pars, int	x, int y, int *flag, char **aux_bool);
-int		init_bool(t_parser *pars, char ***aux_bool);
+void	init_bool(t_parser *pars, char ***aux_bool);
 int		find_n_rows(char **map);
 int		find_n_columms(char **map);
-int		replace_space_in(t_parser *pars);
+void	replace_space_in(t_parser *pars);
 void	trim_map(t_parser *pars);
 
 //~~~~~~~~~~~~~UTILS~~~~~~~~~~~~~~~~//
 int		mod_atoi(char *str, int comma);
 int		check_comma_rgb(char *floor, char *ceiling);
-int		error_msg(int exit, char *msg);
+int		error_parser(char *msg);
 
 #endif

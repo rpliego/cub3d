@@ -6,13 +6,13 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:01:19 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/27 21:43:29 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/28 20:04:22 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	find_player(t_parser *pars, char **map)
+static void	find_player(t_parser *pars, char **map)
 {
 	int	i;
 	int	j;
@@ -35,33 +35,27 @@ int	find_player(t_parser *pars, char **map)
 		i++;
 	}
 	if (pars->player == 0)
-		return (KO);
-	return (OK);
+		error_parser("Player not found");
 }
 
-int	validate_map(t_parser *pars)
+void	validate_map(t_parser *pars)
 {
 	int	open_map;
 	char **aux_bool;
+	int	i;
 
+	i = -1;
 	open_map = 0;
-	pars->rows = find_n_rows(pars->map) - 1;
-	pars->columms = find_n_columms(pars->map) - 1;
-	trim_map(pars); //proteger malloc
-	if (replace_space_in(pars) == KO)
-		return (KO);
-	if (find_player(pars, pars->map) == KO)
-		return (KO);
+	pars->rows = find_n_rows(pars->board) - 1;
+	pars->columms = find_n_columms(pars->board) - 1;
+	trim_map(pars);
+	replace_space_in(pars);
+	find_player(pars, pars->board);
 	init_bool(pars, &aux_bool);
 	dfs(pars, pars->x_player, pars->y_player, &open_map, aux_bool);
-
-	int	i = -1;
 	while (aux_bool[++i])
 		free(aux_bool[i]);
 	free(aux_bool);
 	if (open_map == 1)
-		printf("mapa abiertoooo\n");
-	else
-		printf("cerradoo\n"); //quitar
-	return (OK);
+		error_parser("Map is open");
 }

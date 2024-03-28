@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:56:49 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/10 17:58:23 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/28 20:05:05 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	trim_info(t_parser *pars)
 	pars->floor = ft_strtrim(pars->floor, " ");
 	pars->ceiling = ft_strtrim(pars->ceiling, "\n");
 	pars->ceiling = ft_strtrim(pars->ceiling, " ");
-	// if (!pars->north || !pars->south || !pars->west || !pars->east
-	// 	|| !pars->floor || !pars->ceiling)
-	//return (KO);
+	if (!pars->north || !pars->south || !pars->west || !pars->east
+		|| !pars->floor || !pars->ceiling)
+	error_parser("Malloc failed");
 }
 
 int	path_textures(t_parser *pars)
@@ -93,12 +93,11 @@ int	rgb_check(char *floor, char *ceiling)
 	return (OK);
 }
 
-int	validate_info_map(t_parser *pars)
+void	validate_info_map(t_parser *pars)
 {
-	trim_info(pars); //protect mallocs
+	trim_info(pars);
 	// if (path_textures(pars) == KO)
-	// 	return (KO);
+	// 	error_parser("Wrong path to textures");
 	if (rgb_check(pars->floor, pars->ceiling) == KO)
-		return (KO);
-	return (OK);
+		error_parser("Invalid rgb");
 }

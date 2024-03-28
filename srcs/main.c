@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:55:21 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/07 19:31:43 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/28 19:22:03 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ int	main(int ac, char **av)
 	t_parser pars;
 
 	if (ac != 2)
-		return(error_msg(1, "WaTh??"));
-	if (check_extension(av[1]) == FALSE)
-		return (error_msg(1, "Invalid file, try a .cub file"));
-	if (parser(av[1], &pars) == KO)
-		exit(1);
+		return(error_parser("WaTh??"));
+	check_extension(av[1]);
+	parser(av[1], &pars);
 	return (0);
 }

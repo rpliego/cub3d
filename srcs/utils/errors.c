@@ -6,15 +6,15 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:12:54 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/26 21:23:43 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/28 19:18:04 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	error_msg(int exit, char *msg)
+int	error_parser(char *msg)
 {
 	ft_putstr_fd(msg, 2);
 	ft_putchar_fd('\n', 2);
-	return (exit);
+	exit(1);
 }

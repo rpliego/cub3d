@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/27 21:52:17 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/28 20:08:40 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,53 +26,41 @@ void	init_parser(t_parser *pars)
 	pars->player = 0;
 }
 
-int	parser(char *file, t_parser *pars)
+void	parser(char *file, t_parser *pars)
 {
 	int	i = 0;
 
 	init_parser(pars);
-	if (extract_map(file, pars) == KO)
-	{
-		printf("error extracting\n");
-		exit(1);
-	}
+	extract_map(file, pars);
 	i = check_elements(pars);
-	if (i == KO)
-	{
-		printf("error checking elements\n");
-		exit(2);
-	}
-	if (clean_map(pars, i) == KO)
-	{
-		printf("error saving the board\n");
-		exit(3);
-	}
-	if (validate_map(pars) == KO)
-	{
-		printf("error validating map\n");
-		exit(4);
-	}
-	printf("%i\n\n", pars->n_elements);
-	printf("%s\n", pars->north);
-	printf("%s\n", pars->south);
-	printf("%s\n", pars->west);
-	printf("%s\n", pars->east);
-	printf("%s\n", pars->floor);
-	printf("%s\n\n", pars->ceiling);
+	clean_map(pars, i);
+	validate_map(pars);
+	
+	// printf("%s\n", pars->north);
+	// printf("%s\n", pars->south);
+	// printf("%s\n", pars->west);
+	// printf("%s\n", pars->east);
+	// printf("%s\n", pars->floor);
+	// printf("%s\n\n", pars->ceiling);
 	int	x = -1;
-	while (pars->map[++x])
-		printf("%s\n", pars->map[x]);
-	free(pars->north);
-	free(pars->south);
-	free(pars->west);
-	free(pars->east);
-	free(pars->floor);
-	free(pars->ceiling);
+	// while (pars->board[++x])
+	// 	printf("%s\n", pars->board[x]);
+	// free(pars->north);
+	// free(pars->south);
+	// free(pars->west);
+	// free(pars->east);
+	// free(pars->floor);
+	// free(pars->ceiling);
 	x = -1;
 	while (pars->map[++x])
 	{
 		free(pars->map[x]);
 	}
 	free(pars->map);
-	return (OK);
+	// x = -1;
+	// while (pars->board[++x])
+	// {
+	// 	free(pars->board[x]);
+	// }
+	// free(pars->board);
 }

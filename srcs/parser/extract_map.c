@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:57:41 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/27 21:12:06 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/28 20:00:07 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static	int	count_rows(char *file)
 
 	counter = 1;
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		error_parser("Open failed");
 	while (read(fd, &c, 1) > 0)
 	{
 		if (c == '\n')
@@ -29,26 +31,30 @@ static	int	count_rows(char *file)
 	return (counter);
 }
 
-int	extract_map(char *file, t_parser *pars)
+void	extract_map(char *file, t_parser *pars)
 {
 	int	fd;
 	char *line;
 	int	i;
 
-	i = 0;
+	i = -1;
 	pars->rows = count_rows(file);
 	if (pars->rows <= 8)
-		return (KO);
-	pars->map = malloc((pars->rows + 1) * sizeof(char *)); //prteger
+		error_parser("Map too small");
+	pars->map = malloc((pars->rows + 1) * sizeof(char *));
+	if (!pars->map)
+		error_parser("malloc failed");
 	fd = open(file, O_RDONLY);
-	while (i < pars->rows)
+	if (fd < 0)
+		error_parser("Open failed");
+	while (++i < pars->rows)
 	{
 		line = get_next_line(fd);
 		pars->map[i] = ft_strdup(line);
+		if (!pars->map[i])
+			error_parser("malloc failed");
 		free(line);
-		i++;
 	}
 	pars->map[i] = NULL;
 	close(fd);
-	return (OK);
 }
