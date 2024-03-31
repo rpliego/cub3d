@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/28 20:08:40 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/03/31 15:48:49 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	parser(char *file, t_parser *pars)
 		free(pars->map[x]);
 	}
 	free(pars->map);
-	// x = -1;
-	// while (pars->board[++x])
-	// {
-	// 	free(pars->board[x]);
-	// }
+	x = -1;
+	while (pars->board[++x])
+	{
+		printf("%s\n", pars->board[x]);
+	}
 	// free(pars->board);
 }
