@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:22 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/28 20:05:59 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/01 17:47:17 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,14 @@ static void	check_f_c(t_parser *pars, char *parse)
 	}
 }
 
-int	trash_inside(char *str) //testear
+int	trash_inside(char *str)
 {
-	if (str[0] == '\n' && str[1] == '\0')
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '\0' || str[i] == '\n')
 		return (OK);
 	return (KO);
 }
@@ -108,7 +113,7 @@ int	check_elements(t_parser *pars)
 		check_we_ea(pars, pars->map[i]);
 		check_f_c(pars, pars->map[i]);
 		if (trash_inside(pars->map[i]) == KO && aux == pars->n_elements)
-			error_parser("Need more info");
+			error_parser("Invalid info found");
 		i++;
 		if (pars->n_elements == 6)
 			break ;

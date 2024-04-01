@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:13:12 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 17:36:13 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/01 18:55:39 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ char	**find_start_board(t_parser *pars, int start)
 
 void	clean_map(t_parser *pars, int i)
 {
-	int	j;
-
-	j = -1;
 	valid_characters(pars->map, i);
 	pars->board = find_start_board(pars, i);
 }
