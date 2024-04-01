@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:58:39 by dkreise           #+#    #+#             */
-/*   Updated: 2024/03/27 20:03:29 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/01 17:31:14 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ char	*ft_strtrim(char *s1, char const *set)
 		trimmed = malloc((len_new + 1) * sizeof(char));
 		if (trimmed == NULL)
 			return (0);
-		free(s1);
 		trimmed = ft_fillstr(trimmed, len_new, ptr);
+		free(s1);
 		return (trimmed);
 	}
 	return (free(s1), ft_strdup(""));
