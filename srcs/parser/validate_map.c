@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:01:19 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 17:28:55 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/01 17:39:42 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	validate_map(t_parser *pars)
 
 	i = -1;
 	open_map = 0;
-	pars->rows = find_n_rows(pars->board) - 1;
-	pars->columms = find_n_columms(pars->board) - 1;
 	trim_map(pars);
+	pars->columms = find_n_columms(pars->board) - 1;
+	pars->rows = find_n_rows(pars->board) - 1;
 	replace_space_in(pars);
 	find_player(pars, pars->board);
 	init_bool(pars, &aux_bool);
