@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 17:39:22 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/01 18:28:23 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	parser(char *file, t_parser *pars)
 	x = -1;
 	while (pars->board[++x])
 	{
-		printf("%s\n", pars->board[x]);
+		printf("*%s*\n", pars->board[x]);
 	}
 	// x = -1;
 	// while (pars->board[++x])

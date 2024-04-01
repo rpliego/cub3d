@@ -39,8 +39,13 @@ void	draw(t_map map)
 				d.ymap += d.ystep;
 				d.side = 1;
 			}
-			if (map.board[d.xmap][d.ymap] > 0)
+			if (map.board[d.xmap][d.ymap] == '1')
 				d.hit = 1;
+		}
+		if (x == 250)
+		{
+			printf("xmap and ymap: %i, %i\n", d.xmap, d.ymap);
+			printf("char in board: %c\n", map.board[d.xmap][d.ymap]);
 		}
 		if (d.side == 0)
 			d.walldist = (d.xsidedist - d.xdeltadist);
@@ -53,8 +58,6 @@ void	draw(t_map map)
 		d.end_line = WIN_WIDTH / 2 + d.height_line / 2;
 		if (d.end_line > WIN_WIDTH)
 			d.end_line = WIN_WIDTH - 1;
-		if (x == 250)
-			printf("%i, %i, %f, %i, %i, %i\n", d.hit, d.side, d.walldist, d.height_line, d.start_line, d.end_line);
 		color = COLOR;
 		if (d.side == 1)
 			color = color / 2;

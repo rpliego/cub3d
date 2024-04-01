@@ -16,13 +16,13 @@ void	init_dirs(t_map *map, t_parser pars)
 {
 	if (pars.player == 'N' || pars.player == 'S')
 	{
-		map->xdir = 0;
-		map->yplane = 0;
+		map->xdir = -1; //0
+		map->yplane = 2; //0
 		if (pars.player == 'N')
-			map->ydir = 1;
+			map->ydir = 0; //1
 		else
 			map->ydir = -1;
-		map->xplane = map->ydir;
+		map->xplane = 2 * map->ydir;
 	}
 	else if (pars.player == 'E' || pars.player == 'W')
 	{
@@ -32,7 +32,7 @@ void	init_dirs(t_map *map, t_parser pars)
 			map->xdir = 1;
 		else
 			map->xdir = -1;
-		map->yplane = (-1) * map->xdir;
+		map->yplane = (-2) * map->xdir;
 	}
 }
 
@@ -40,8 +40,10 @@ t_map	init_map(t_parser pars, t_img img)
 {
 	t_map	map;
 
-	map.xpos = pars.y_player+0.3;
-	map.ypos = pars.x_player - 1 + 0.6;
+	// map.xpos = pars.y_player+0.3;
+	// map.ypos = pars.x_player - 1 + 0.6;
+	map.xpos = pars.x_player;
+	map.ypos = pars.y_player;
 	init_dirs(&map, pars);
 	map.board = pars.board;
 	map.img = &img;
@@ -51,7 +53,7 @@ t_map	init_map(t_parser pars, t_img img)
 float	set_delta(float raydir)
 {
 	if (raydir == 0)
-		return (0.00001); // or smth else?
+		return (1000000); // or smth else?
 	else
 		return (fabsf(1 / raydir));
 }
@@ -92,13 +94,13 @@ t_data	init_data(t_map map, int x)
 	d.xdeltadist = set_delta(d.xraydir);
 	d.ydeltadist = set_delta(d.yraydir);
 	d.hit = 0;
-	// if (x == 5)
-	// 	printf("%f, %f, %f, %i, %i, %f, %f, %i|\n", d.alpha, d.xraydir, d.yraydir, d.xmap, d.ymap, \
-	// 	 d.xdeltadist, d.ydeltadist, d.hit);
 	set_step_sidedist(&d, map);
 	if (x == 250)
 		printf("xpos and ypos:: %f and %f\n", map.xpos, map.ypos);
-	if (x == 250)
-		printf("%f, %f, %f, %f\n", d.xsidedist, d.ysidedist, d.xdeltadist, d.ydeltadist);
+	// if (x == 250)
+	// {
+	// 	printf("sidedist: %f, %f\n", d.xsidedist, d.ysidedist);
+	// 	printf("deltadist: %f, %f\n", d.xdeltadist, d.ydeltadist);
+	// }
 	return (d);
 }
