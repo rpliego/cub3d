@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:58:39 by dkreise           #+#    #+#             */
-/*   Updated: 2024/03/27 20:03:29 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/01 17:29:52 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,16 @@ static int	ft_isinset(char c, char const *set)
 	return (0);
 }
 
-static char	*ft_fillstr(char *trimmed, int len, char *str)
+static void ft_fillstr(char **trimmed, int len, char *str)
 {
-	char	*tptr;
 	int		i;
 
 	i = 0;
-	tptr = trimmed;
 	while (i < len)
 	{
-		tptr[i] = str[i];
+		(*trimmed)[i] = str[i];
 		i ++;
 	}
-	tptr[i] = '\0';
-	return (trimmed);
 }
 
 char	*ft_strtrim(char *s1, char const *set)
@@ -58,11 +54,11 @@ char	*ft_strtrim(char *s1, char const *set)
 		while (ft_isinset(s1[len_s1 - 1], set))
 			len_s1 --;
 		len_new = len_s1 - i;
-		trimmed = malloc((len_new + 1) * sizeof(char));
+		trimmed = ft_calloc((len_new + 1), sizeof(char));
 		if (trimmed == NULL)
 			return (0);
+		ft_fillstr(&trimmed, len_new, ptr);
 		free(s1);
-		trimmed = ft_fillstr(trimmed, len_new, ptr);
 		return (trimmed);
 	}
 	return (free(s1), ft_strdup(""));

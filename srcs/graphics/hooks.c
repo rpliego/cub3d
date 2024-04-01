@@ -1,16 +1,16 @@
 #include "../../inc/cub3d.h"
 
-int	ft_close(t_fractal *f)
+int	ft_close(t_map *map)
 {
-	mlx_destroy_window(f->img->mlx, f->img->win);
+	mlx_destroy_window(map->img->mlx, map->img->win);
 	exit(1);
 	return (0);
 }
 
-int	key_hook(int key, t_fractal *f)
+int	key_hook(int key, t_map *map)
 {
 	if (key == ESC)
-		ft_close(f);
+		ft_close(map);
 	// if (key == ARROW_LEFT)
 	// 	f->mov->arrow_left = 1;
 	// if (key == ARROW_RIGHT)

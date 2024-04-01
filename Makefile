@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 RM = rm -rf
 
 
@@ -14,7 +14,10 @@ SRC =		srcs/main.c \
 			srcs/parser/clean_map.c \
 			srcs/parser/validate_info.c \
 			srcs/parser/validate_map.c \
-			srcs/parser/dfs.c 
+			srcs/parser/dfs.c \
+			srcs/graphics/init.c \
+			srcs/graphics/hooks.c \
+			srcs/graphics/raycasting.c
 
 
 OBJ = $(SRC:.c=.o)
@@ -24,7 +27,7 @@ INCLUDE = inc/cub3d.h
 
 all:
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(MAKE) -C $(MLX_DIR) --no-print-directory
+# 	@$(MAKE) -C $(MLX_DIR) --no-print-directory
 	@$(MAKE) $(NAME) --no-print-directory
 
 $(NAME): $(OBJ) $(INCLUDE) Makefile
@@ -35,7 +38,7 @@ $(NAME): $(OBJ) $(INCLUDE) Makefile
 
 clean:
 	$(RM) $(OBJ)
-	@make clean -C $(MLX_DIR)
+# 	@make clean -C $(MLX_DIR)
 	@make clean -C $(LIBFT_DIR)
 
 fclean: clean

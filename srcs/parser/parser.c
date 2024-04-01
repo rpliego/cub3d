@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/31 15:48:49 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/01 17:32:25 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	parser(char *file, t_parser *pars)
 	extract_map(file, pars);
 	i = check_elements(pars);
 	clean_map(pars, i);
+	
 	validate_map(pars);
 	
 	// printf("%s\n", pars->north);
