@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:01:19 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/02 20:38:28 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/02 20:51:53 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	find_player(t_parser *pars, char **map)
 			if (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'E' || map[i][j] == 'W')
 			{
+				if (pars->player)
+					error_parser("More than one player");
 				pars->player = map[i][j];
 				pars->x_player = i;
 				pars->y_player = j;
