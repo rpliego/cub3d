@@ -31,7 +31,7 @@ $(NAME): $(OBJ) $(INCLUDE) Makefile
 	$(CC) $(CFLAGS) $(OBJ) -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_DIR)/libft.a
 
 %.o: %.c $(INCLUDE)
-	$(CC) -I$(MLX_DIR) -I$(LIBFT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(MLX_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:01:19 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 17:36:28 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/02 20:38:28 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	validate_map(t_parser *pars)
 	find_player(pars, pars->board);
 	init_bool(pars, &aux_bool);
 	dfs(pars, pars->x_player, pars->y_player, &open_map, aux_bool);
-	while (aux_bool[++i])
+	while (++i <= pars->rows)
 		free(aux_bool[i]);
 	free(aux_bool);
 	if (open_map == 1)
