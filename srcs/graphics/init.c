@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkreise <dkreise@student.42barcelo>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
+/*   Updated: 2024/04/02 17:14:48 by dkreise          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 t_img	init_img(void)
@@ -16,44 +28,83 @@ void	init_dirs(t_map *map, t_parser pars)
 {
 	if (pars.player == 'N' || pars.player == 'S')
 	{
-		map->xdir = -1; //0
-		map->yplane = 2; //0
-		if (pars.player == 'N')
-			map->ydir = 0; //1
-		else
-			map->ydir = -1;
-		map->xplane = 2 * map->ydir;
-	}
-	else if (pars.player == 'E' || pars.player == 'W')
-	{
 		map->ydir = 0;
 		map->xplane = 0;
-		if (pars.player == 'E')
+		if (pars.player == 'S')
 			map->xdir = 1;
 		else
 			map->xdir = -1;
-		map->yplane = (-2) * map->xdir;
+		map->yplane = (-1.5) * map->xdir;
+	}
+	else if (pars.player == 'E' || pars.player == 'W')
+	{
+		map->xdir = 0;
+		map->yplane = 0;
+		if (pars.player == 'E')
+			map->ydir = 1;
+		else
+			map->ydir = -1;
+		map->xplane = 1.5 * map->ydir;
 	}
 }
 
+// void	init_dirs(t_map *map, t_parser pars)
+// {
+// 	if (pars.player == 'N' || pars.player == 'S')
+// 	{
+// 		map->xdir = -1; //0
+// 		map->yplane = 1.5; //0
+// 		if (pars.player == 'N')
+// 			map->ydir = 0; //1
+// 		else
+// 			map->ydir = -1;
+// 		map->xplane = 1.5 * map->ydir;
+// 	}
+// 	else if (pars.player == 'E' || pars.player == 'W')
+// 	{
+// 		map->ydir = 0;
+// 		map->xplane = 0;
+// 		if (pars.player == 'E')
+// 			map->xdir = 1;
+// 		else
+// 			map->xdir = -1;
+// 		map->yplane = (-1.5) * map->xdir;
+// 	}
+// }
+
+t_move	init_moves(void)
+{
+	t_move	mov;
+
+	mov.w_key = 0;
+	mov.a_key = 0;
+	mov.s_key = 0;
+	mov.d_key = 0;
+	mov.arrow_left = 0;
+	mov.arrow_right = 0;
+	return (mov);
+}
+
+// init movements!!!!!!!!!!!
 t_map	init_map(t_parser pars, t_img img)
 {
 	t_map	map;
+	t_move	mov;
 
-	// map.xpos = pars.y_player+0.3;
-	// map.ypos = pars.x_player - 1 + 0.6;
 	map.xpos = pars.x_player;
 	map.ypos = pars.y_player;
 	init_dirs(&map, pars);
 	map.board = pars.board;
 	map.img = &img;
+	mov = init_moves();
+	map.mov = &mov;
 	return (map);
 }
 
 float	set_delta(float raydir)
 {
 	if (raydir == 0)
-		return (1000000); // or smth else?
+		return (10000000);
 	else
 		return (fabsf(1 / raydir));
 }
@@ -95,8 +146,8 @@ t_data	init_data(t_map map, int x)
 	d.ydeltadist = set_delta(d.yraydir);
 	d.hit = 0;
 	set_step_sidedist(&d, map);
-	if (x == 250)
-		printf("xpos and ypos:: %f and %f\n", map.xpos, map.ypos);
+	// if (x == 250)
+	// 	printf("xpos and ypos:: %f and %f\n", map.xpos, map.ypos);
 	// if (x == 250)
 	// {
 	// 	printf("sidedist: %f, %f\n", d.xsidedist, d.ysidedist);

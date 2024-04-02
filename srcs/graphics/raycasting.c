@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkreise <dkreise@student.42barcelo>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 17:14:36 by dkreise           #+#    #+#             */
+/*   Updated: 2024/04/02 17:14:38 by dkreise          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	draw_line(t_map map, int x, int start, int end, unsigned int color)
@@ -9,6 +21,10 @@ void	draw_line(t_map map, int x, int start, int end, unsigned int color)
 	{
 		if (y >= start && y <= end)
 			my_mlx_pixel_put(map.img, x, y, color);
+		else if (y < start)
+			my_mlx_pixel_put(map.img, x, y, BLUE);
+		else if (y > end)
+			my_mlx_pixel_put(map.img, x, y, GREEN);
 		else
 			my_mlx_pixel_put(map.img, x, y, BLACK);
 		y ++;
@@ -42,16 +58,16 @@ void	draw(t_map map)
 			if (map.board[d.xmap][d.ymap] == '1')
 				d.hit = 1;
 		}
-		if (x == 250)
-		{
-			printf("xmap and ymap: %i, %i\n", d.xmap, d.ymap);
-			printf("char in board: %c\n", map.board[d.xmap][d.ymap]);
-		}
+		// if (x == 250)
+		// {
+		// 	printf("xmap and ymap: %i, %i\n", d.xmap, d.ymap);
+		// 	printf("char in board: %c\n", map.board[d.xmap][d.ymap]);
+		// }
 		if (d.side == 0)
 			d.walldist = (d.xsidedist - d.xdeltadist);
 		else
 			d.walldist = (d.ysidedist - d.ydeltadist);
-		d.height_line = (int) (WIN_WIDTH / d.walldist);
+		d.height_line = (int) (WIN_WIDTH / d.walldist) / 3;
 		d.start_line = WIN_WIDTH / 2 - d.height_line / 2;
 		if (d.start_line < 0)
 			d.start_line = 0;

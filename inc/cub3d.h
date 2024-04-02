@@ -12,11 +12,22 @@
 # define KO 1
 # define OK 0
 
-# define WIN_WIDTH 500
+# define WIN_WIDTH 1000
 # define BLACK 0xFFFFFFFF
 # define COLOR 0x00F8F4F5
+# define GREEN 0xAA00FF00
+# define BLUE 0xAA0000FF
+
+# define SPEED 0.05
+# define ROTATE 0.05
 
 # define ESC 53
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
+# define W 13
+# define A 0
+# define S 1
+# define D 2
 
 typedef struct s_parser
 {
@@ -47,6 +58,16 @@ typedef struct s_img
 	int				endian;
 }				t_img;
 
+typedef struct s_move
+{
+	int	w_key;
+	int	a_key;
+	int	s_key;
+	int	d_key;
+	int	arrow_left;
+	int	arrow_right;
+}				t_move;
+
 typedef struct s_map
 {
 	float	xpos;
@@ -57,6 +78,7 @@ typedef struct s_map
 	float	yplane;
 	char	**board;
 	t_img	*img;
+	t_move	*mov;
 }				t_map;
 
 typedef struct s_data
@@ -110,6 +132,10 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw(t_map map);
 
 //~~~~~~~~~~~~~HOOKS~~~~~~~~~~~~~~~~//
-int	key_hook(int key, t_map *map);
+int		ft_close(t_map *map);
+int		key_hook(int key, t_map *map);
+void	key_hook_move(t_map *map);
+void	key_hook_rotate(t_map *map);
+int		key_hook_release(int key, t_map *map);
 
 #endif

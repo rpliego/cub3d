@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:55:21 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 18:31:59 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/02 17:16:23 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 int	render(t_map *map)
 {
 	mlx_clear_window(map->img->mlx, map->img->win);
-	//key_hook_move(map);
+	key_hook_move(map);
+	key_hook_rotate(map);
 	draw(*map);
 	mlx_put_image_to_window(map->img->mlx, map->img->win, map->img->img, 0, 0);
 	return (1);
@@ -42,6 +43,8 @@ int	main(int ac, char **av)
 	img = init_img();
 	map = init_map(pars, img);
 	mlx_hook(img.win, 2, (1L << 0), &key_hook, &map);
+	mlx_hook(img.win, 3, (1L << 0), &key_hook_release, &map);
+	mlx_hook(img.win, 17, 0, &ft_close, &map);
 	mlx_loop_hook(img.mlx, render, &map);
 	mlx_loop(img.mlx);
 	return (0);
