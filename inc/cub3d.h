@@ -17,6 +17,8 @@
 # define COLOR 0x00F8F4F5
 # define GREEN 0xAA00FF00
 # define BLUE 0xAA0000FF
+# define RED 0xAAFF0000
+# define WHITE 0x00000000
 
 # define SPEED 0.05
 # define ROTATE 0.05
@@ -76,6 +78,9 @@ typedef struct s_map
 	float	ydir;
 	float	xplane;
 	float	yplane;
+	int		rows;
+	int		cols;
+	int		iminimap;
 	char	**board;
 	t_img	*img;
 	t_move	*mov;
@@ -130,6 +135,8 @@ t_map	init_map(t_parser pars, t_img img);
 t_data	init_data(t_map map, int x);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw(t_map map);
+int		i_minimap(t_map map);
+void	minimap(t_map map);
 
 //~~~~~~~~~~~~~HOOKS~~~~~~~~~~~~~~~~//
 int		ft_close(t_map *map);

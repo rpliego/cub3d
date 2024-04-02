@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:55:21 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/02 17:16:23 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/02 18:46:49 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	render(t_map *map)
 	mlx_clear_window(map->img->mlx, map->img->win);
 	key_hook_move(map);
 	key_hook_rotate(map);
+	// minimap(*map);
 	draw(*map);
+	minimap(*map);
 	mlx_put_image_to_window(map->img->mlx, map->img->win, map->img->img, 0, 0);
 	return (1);
 }
@@ -42,6 +44,8 @@ int	main(int ac, char **av)
 	parser(av[1], &pars);
 	img = init_img();
 	map = init_map(pars, img);
+	printf("rows: %i, cols: %i\n", map.rows, map.cols);
+	printf("i = %i\n", map.iminimap);
 	mlx_hook(img.win, 2, (1L << 0), &key_hook, &map);
 	mlx_hook(img.win, 3, (1L << 0), &key_hook_release, &map);
 	mlx_hook(img.win, 17, 0, &ft_close, &map);

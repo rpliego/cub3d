@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/02 17:14:48 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/02 18:27:38 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ t_move	init_moves(void)
 	return (mov);
 }
 
-// init movements!!!!!!!!!!!
 t_map	init_map(t_parser pars, t_img img)
 {
 	t_map	map;
@@ -94,6 +93,9 @@ t_map	init_map(t_parser pars, t_img img)
 	map.xpos = pars.x_player;
 	map.ypos = pars.y_player;
 	init_dirs(&map, pars);
+	map.rows = pars.rows - 1;
+	map.cols = pars.columms - 1;
+	map.iminimap = i_minimap(map);
 	map.board = pars.board;
 	map.img = &img;
 	mov = init_moves();
