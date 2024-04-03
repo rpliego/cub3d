@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/02 20:40:58 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/03 14:28:02 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	parser(char *file, t_parser *pars)
 	extract_map(file, pars);
 	i = check_elements(pars);
 	clean_map(pars, i);
+	
 	validate_map(pars);
 
 	// int	x = -1;
@@ -55,6 +56,17 @@ void	parser(char *file, t_parser *pars)
 	// free(pars->east);
 	// free(pars->floor);
 	// free(pars->ceiling);
+	// x = -1;
+	// while (pars->map[++x])
+	// {
+	// 	free(pars->map[x]);
+	// }
+	// free(pars->map);
+	// x = -1;
+	// while (pars->board[++x])
+	// {
+	// 	printf("*%s*\n", pars->board[x]);
+	// }
 	// x = -1;
 	// while (pars->board[++x])
 	// {

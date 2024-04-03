@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 18:52:27 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/25 18:28:38 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/01 17:37:07 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	find_n_rows(char **map)
 	i = 0;
 	while (map[i])
 	{
+		// printf("%i|%s|\n", i, map[i]);
 		j = 0;
 		while (map[i][j])
 			j++;

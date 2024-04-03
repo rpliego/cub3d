@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:57:41 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 17:33:24 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/01 17:38:43 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	extract_map(char *file, t_parser *pars)
 	pars->rows = count_rows(file);
 	if (pars->rows <= 8)
 		error_parser("Map too small");
-	pars->map = malloc((pars->rows + 1) * sizeof(char *));
+	printf("rows:%i|\n", pars->rows);
+	pars->map = ft_calloc((pars->rows + 1), sizeof(char *));
 	if (!pars->map)
 		error_parser("malloc failed");
 	fd = open(file, O_RDONLY);
@@ -55,6 +56,6 @@ void	extract_map(char *file, t_parser *pars)
 			error_parser("malloc failed");
 		free(line);
 	}
-	pars->map[i] = NULL;
+	// pars->map[i] = NULL;
 	close(fd);
 }
