@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:01:19 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/04 15:41:14 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/04 17:15:09 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	validate_map(t_parser *pars)
 
 	i = -1;
 	open_map = 0;
-	//trim_map(pars);
+	trim_map(pars);
 	pars->columms = find_n_columms(pars->board) - 1;
 	pars->rows = find_n_rows(pars->board) - 1;
 	replace_space_in(pars);

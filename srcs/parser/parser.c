@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/04 15:50:46 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/04 19:23:17 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	parser(char *file, t_parser *pars)
 	validate_map(pars);
 	get_cols_rows(pars);
 	int	x = -1;
-	while (pars->map[++x])
-		free(pars->map[x]);
-	free(pars->map);
+	// while (pars->map[++x])
+	// 	free(pars->map[x]);
+	// free(pars->map);
 	
 		// printf("%s\n", pars->north);
 		// printf("%s\n", pars->south);
@@ -55,8 +55,8 @@ void	parser(char *file, t_parser *pars)
 		// printf("%s\n", pars->east);
 		// printf("%s\n", pars->floor);
 		// printf("%s\n\n", pars->ceiling);
-	// while (pars->board[++x])
-	// 	printf("%s\n", pars->board[x]);
+	while (pars->board[++x])
+		printf("%s\n", pars->board[x]);
 	printf("rows->%i\ncols->%i\n", pars->rows, pars->columms);
 	free(pars->north);
 	free(pars->south);
