@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:13:12 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 18:55:39 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/04 15:43:55 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,26 @@ char	**find_start_board(t_parser *pars, int start)
 {
 	char **board;
 	int	i;
+	int	aux;
+	int	len;
 
-	i = 0;
-	while (pars->map[i])
-		i++;
-	board = malloc((i - start + 1) * sizeof(char *));
+	len = 0;
+	aux = start;
+	while (pars->map[aux] && trash_inside(pars->map[aux]) == FALSE)
+	{
+		start++;
+		aux++;
+	}
+	while (pars->map[aux] && trash_inside(pars->map[aux]) == TRUE)
+	{
+		aux++;
+		len++;
+	}
+	board = malloc((len + 1) * sizeof(char *));
 	if (!board)
 		error_parser("Malloc failed");
 	i = 0;
-	while (pars->map[start])
+	while (i < len)
 	{
 		board[i] = ft_strdup(pars->map[start]);
 		if (!board[i])

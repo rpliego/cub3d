@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:22 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 17:47:17 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/04 15:39:36 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ static void	check_no_so(t_parser *pars, char *parse)
 	if (parse[i] == 'N' && parse[i + 1] == 'O' && parse[i + 2] == ' ')
 	{
 		if (pars->north == NULL)
-		{
 			pars->north = ft_substr(parse, i + 3, ft_strlen(parse));
-		}
 		else
 			error_parser("Duplicated info");
 		pars->n_elements += 1;
@@ -94,11 +92,15 @@ int	trash_inside(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] == ' ')
+	if (!str[i])
+		return (FALSE);
+	while (str[i])
+	{
+		if (str[i] == ' ' || str[i] != '\n')
+			return (TRUE);
 		i++;
-	if (str[i] == '\0' || str[i] == '\n')
-		return (OK);
-	return (KO);
+	}
+	return (FALSE);
 }
 
 int	check_elements(t_parser *pars)
@@ -112,7 +114,7 @@ int	check_elements(t_parser *pars)
 		check_no_so(pars, pars->map[i]);
 		check_we_ea(pars, pars->map[i]);
 		check_f_c(pars, pars->map[i]);
-		if (trash_inside(pars->map[i]) == KO && aux == pars->n_elements)
+		if (trash_inside(pars->map[i]) == FALSE && aux == pars->n_elements)
 			error_parser("Invalid info found");
 		i++;
 		if (pars->n_elements == 6)
