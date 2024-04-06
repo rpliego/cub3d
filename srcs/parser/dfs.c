@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:57:06 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/05 07:42:31 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/06 18:38:17 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	dfs(t_parser *pars, int	x, int y, int *flag, char **aux_bool)
 		*flag = 1;
 		return ;
 	}
+	if (pars->board[x][y] == '~')
+		pars->board[x][y] = '0';
 	if (aux_bool[x][y] == '1' || pars->board[x][y] == '1')
 		return ;
 	aux_bool[x][y] = '1';
