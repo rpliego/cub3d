@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/05 13:07:29 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/06 18:19:11 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,20 @@ void	parser(char *file, t_parser *pars)
 		// printf("%s\n", pars->east);
 		// printf("%s\n", pars->floor);
 		// printf("%s\n\n", pars->ceiling);
-	x = -1;
-	while (pars->board[++x])
-		printf("%s\n", pars->board[x]);
-	printf("rows->%i\ncols->%i\n", pars->rows, pars->columms);
-	free(pars->north);
-	free(pars->south);
-	free(pars->west);
-	free(pars->east);
-	free(pars->floor);
-	free(pars->ceiling);
-	x = -1;
-	while (pars->board[++x])
-	{
-		free(pars->board[x]);
-	}
-	free(pars->board);
+	// x = -1;
+	// while (pars->board[++x])
+	// 	printf("%s\n", pars->board[x]);
+	// printf("rows->%i\ncols->%i\n", pars->rows, pars->columms);
+	// free(pars->north);
+	// free(pars->south);
+	// free(pars->west);
+	// free(pars->east);
+	// free(pars->floor);
+	// free(pars->ceiling);
+	// x = -1;
+	// while (pars->board[++x])
+	// {
+	// 	free(pars->board[x]);
+	// }
+	// free(pars->board);
 }

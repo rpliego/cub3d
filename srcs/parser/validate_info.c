@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:56:49 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/03 14:56:25 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/06 18:15:04 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int	rgb_check(char *floor, char *ceiling)
 void	validate_info_map(t_parser *pars)
 {
 	trim_info(pars);
-	// if (path_textures(pars) == KO)
-	// 	error_parser("Wrong path to textures");
+	if (path_textures(pars) == KO)
+		error_parser("Wrong path to textures");
 	if (rgb_check(pars->floor, pars->ceiling) == KO)
 		error_parser("Invalid rgb");
 }

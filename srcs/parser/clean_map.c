@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:13:12 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/05 13:24:02 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/05 13:47:56 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ char	**find_start_board(t_parser *pars, int start)
 	while (pars->map[++x])
 		pars->map[x] = ft_strtrim(pars->map[x], "\n");
 	x = start - 1;
-	while (pars->map[++x])
-		printf("%s\n", pars->map[x]);
-	printf("\n\n");
+	// while (pars->map[++x])
+	// 	printf("%s\n", pars->map[x]);
+	// printf("\n\n");
 	i = 0;
 	while (i < len)
 	{
