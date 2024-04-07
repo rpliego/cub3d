@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/02 18:27:38 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/04 14:20:59 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,10 @@ t_map	init_map(t_parser pars, t_img img)
 
 	map.xpos = pars.x_player;
 	map.ypos = pars.y_player;
+	printf("xpos: %i, ypos: %i\n", (int) map.xpos, (int) map.ypos);
 	init_dirs(&map, pars);
 	map.rows = pars.rows - 1;
-	map.cols = pars.columms - 1;
+	map.cols = pars.columms + 1; // shoud be smth dif
 	map.iminimap = i_minimap(map);
 	map.board = pars.board;
 	map.img = &img;

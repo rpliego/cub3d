@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:00:50 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/02 19:07:19 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/04 12:53:07 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ unsigned int	set_color(t_map map, int x, int y)
 
 	if (x == (int) map.xpos && y == (int) map.ypos)
 		color = RED;
-	else if (map.board[x][y] == '0')
+	else if (map.board[y + 1][x] == '1')
 		color = BLACK;
-	else if (map.board[x][y] == '1')
+	else if (map.board[y + 1][x] == '0')
 		color = WHITE;
 	return (color);
 }
@@ -68,11 +68,10 @@ void	minimap(t_map map)
 	unsigned int	color;
 	
 	x = 0;
-	y = 0;
-	while (x < map.rows + 1)
+	while (x < map.cols)
 	{
 		y = 0;
-		while (y < map.cols)
+		while (y < map.rows)
 		{
 			color = set_color(map, x, y);
 			draw_minimap(map, x, y, color);
