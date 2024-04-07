@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 18:52:27 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 17:37:07 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/04 14:29:22 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,10 @@ int	find_n_columms(char **map)
 int	find_n_rows(char **map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (map[i])
-	{
-		// printf("%i|%s|\n", i, map[i]);
-		j = 0;
-		while (map[i][j])
-			j++;
 		i++;
-	}
 	return (i);
 }
 
@@ -95,13 +88,13 @@ int	check_comma_rgb(char *floor, char *ceiling)
 	i = -1;
 	while(floor[++i])
 	{
-		if (floor[i] == ',')
+		if (floor[i] == ',' && floor[i + 1] != '\0')
 			++comma_n;
 	}
 	i = -1;
 	while (ceiling[++i])
 	{
-		if (ceiling[i] == ',')
+		if (ceiling[i] == ',' && ceiling[i + 1] != '\0')
 			++comma_n;
 	}
 	if (comma_n != 4)

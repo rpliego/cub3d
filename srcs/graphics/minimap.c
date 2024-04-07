@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:00:50 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/04 12:53:07 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/07 14:45:54 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ unsigned int	set_color(t_map map, int x, int y)
 {
 	unsigned int	color;
 
+	color = 0;
 	if (x == (int) map.xpos && y == (int) map.ypos)
 		color = RED;
 	else if (map.board[y + 1][x] == '1')

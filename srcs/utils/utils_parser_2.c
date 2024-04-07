@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:20:35 by rpliego           #+#    #+#             */
-/*   Updated: 2024/03/28 19:59:05 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/04 14:35:46 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	replace_space_in(t_parser *pars)
 	while (pars->board[i])
 	{
 		j = 0;
-		while (pars->board[i][j] && pars->board[i][j] == ' ')
-			j++;
+		// while (pars->board[i][j] && pars->board[i][j] == ' ')
+		// 	j++;
 		while (pars->board[i][j])
 		{
 			if (pars->board[i][j] == ' ')

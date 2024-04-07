@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 18:28:23 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/06 18:19:11 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	init_parser(t_parser *pars)
 	pars->floor = NULL;
 	pars->ceiling = NULL;
 	pars->player = 0;
+	pars->x_player = 0;
+	pars->y_player = 0;
+}
+
+void	get_cols_rows(t_parser *pars)
+{
+	pars->rows = find_n_rows(pars->board);
+	pars->columms = find_n_columms(pars->board);
 }
 
 void	parser(char *file, t_parser *pars)
@@ -34,39 +42,29 @@ void	parser(char *file, t_parser *pars)
 	extract_map(file, pars);
 	i = check_elements(pars);
 	clean_map(pars, i);
-	
 	validate_map(pars);
-
+	get_cols_rows(pars);
 	int	x = -1;
-	// while (pars->map[++x])
-	// 	free(pars->map[x]);
-	// free(pars->map);
+	while (pars->map[++x])
+		free(pars->map[x]);
+	free(pars->map);
 	
-	// printf("%s\n", pars->north);
-	// printf("%s\n", pars->south);
-	// printf("%s\n", pars->west);
-	// printf("%s\n", pars->east);
-	// printf("%s\n", pars->floor);
-	// printf("%s\n\n", pars->ceiling);
+		// printf("%s\n", pars->north);
+		// printf("%s\n", pars->south);
+		// printf("%s\n", pars->west);
+		// printf("%s\n", pars->east);
+		// printf("%s\n", pars->floor);
+		// printf("%s\n\n", pars->ceiling);
+	// x = -1;
 	// while (pars->board[++x])
 	// 	printf("%s\n", pars->board[x]);
+	// printf("rows->%i\ncols->%i\n", pars->rows, pars->columms);
 	// free(pars->north);
 	// free(pars->south);
 	// free(pars->west);
 	// free(pars->east);
 	// free(pars->floor);
 	// free(pars->ceiling);
-	x = -1;
-	while (pars->map[++x])
-	{
-		free(pars->map[x]);
-	}
-	free(pars->map);
-	x = -1;
-	while (pars->board[++x])
-	{
-		printf("*%s*\n", pars->board[x]);
-	}
 	// x = -1;
 	// while (pars->board[++x])
 	// {

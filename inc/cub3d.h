@@ -123,6 +123,7 @@ int		find_n_rows(char **map);
 int		find_n_columms(char **map);
 void	replace_space_in(t_parser *pars);
 void	trim_map(t_parser *pars);
+int		trash_inside(char *str);
 
 //~~~~~~~~~~~~~UTILS~~~~~~~~~~~~~~~~//
 int		mod_atoi(char *str, int comma);

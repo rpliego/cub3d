@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
 RM = rm -rf
 
 
@@ -28,18 +28,18 @@ INCLUDE = inc/cub3d.h
 
 all:
 	@$(MAKE) -C $(LIBFT_DIR)
-# 	@$(MAKE) -C $(MLX_DIR) --no-print-directory
+	@$(MAKE) -C $(MLX_DIR) --no-print-directory
 	@$(MAKE) $(NAME) --no-print-directory
 
 $(NAME): $(OBJ) $(INCLUDE) Makefile
 	$(CC) $(CFLAGS) $(OBJ) -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_DIR)/libft.a
 
 %.o: %.c $(INCLUDE)
-	$(CC) -I$(MLX_DIR) -I$(LIBFT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(MLX_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)
-# 	@make clean -C $(MLX_DIR)
+	@make clean -C $(MLX_DIR)
 	@make clean -C $(LIBFT_DIR)
 
 fclean: clean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:56:49 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/01 17:39:34 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/06 18:15:04 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,9 @@ void	trim_info(t_parser *pars)
 	pars->east = ft_strtrim(pars->east, "\n");
 	if (pars->east[0] == ' ')
 		pars->east = ft_strtrim(pars->east, " ");
-	printf("~~~>%s|\n", pars->floor);
 	pars->floor = ft_strtrim(pars->floor, "\n");
 	if (pars->floor[0] == ' ')
 		pars->floor = ft_strtrim(pars->floor, " ");
-	printf("~~~>%s|\n", pars->floor);
 	pars->ceiling = ft_strtrim(pars->ceiling, "\n");
 	if (pars->ceiling[0] == ' ')
 		pars->ceiling = ft_strtrim(pars->ceiling, " ");
@@ -84,8 +82,6 @@ int	rgb_check(char *floor, char *ceiling)
 	int	int_c[3];
 	int	i;
 
-	printf("floor: %zu|%s|\n", ft_strlen(floor), floor);
-	// exit(1);
 	if (ft_strlen(floor) > 11 || ft_strlen(floor) < 5)
 		return (KO);
 	if (ft_strlen(ceiling) > 11 || ft_strlen(ceiling) < 5)
@@ -106,8 +102,8 @@ int	rgb_check(char *floor, char *ceiling)
 void	validate_info_map(t_parser *pars)
 {
 	trim_info(pars);
-	// if (path_textures(pars) == KO)
-	// 	error_parser("Wrong path to textures");
+	if (path_textures(pars) == KO)
+		error_parser("Wrong path to textures");
 	if (rgb_check(pars->floor, pars->ceiling) == KO)
 		error_parser("Invalid rgb");
 }
