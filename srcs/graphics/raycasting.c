@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:36 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/02 18:46:32 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/08 17:14:25 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	draw_line(t_map map, int x, int start, int end, unsigned int color)
 	y = 0;
 	while (y < WIN_WIDTH)
 	{
-		if (x < map.rows * map.iminimap && y < map.cols * map.iminimap)
-			;
-		else if (y >= start && y <= end)
+		// if (x < map.cols * map.iminimap && y < map.rows * map.iminimap)
+		// 	;
+		if (y >= start && y <= end)
 			my_mlx_pixel_put(map.img, x, y, color);
 		else if (y < start)
 			my_mlx_pixel_put(map.img, x, y, BLUE);
@@ -49,18 +49,24 @@ void	draw(t_map map)
 			{
 				d.xsidedist += d.xdeltadist;
 				d.xmap += d.xstep;
-				d.side = 0;
+				if (d.xraydir > 0)
+					d.side = NORTH;
+				else
+					d.side = SOUTH;
 			}
 			else
 			{
 				d.ysidedist += d.ydeltadist;
 				d.ymap += d.ystep;
-				d.side = 1;
+				if (d.yraydir > 0)
+					d.side = WEST;
+				else
+					d.side = EAST;
 			}
 			if (map.board[d.xmap][d.ymap] == '1')
 				d.hit = 1;
 		}
-		if (d.side == 0)
+		if (d.side == NORTH || d.side == SOUTH)
 			d.walldist = (d.xsidedist - d.xdeltadist);
 		else
 			d.walldist = (d.ysidedist - d.ydeltadist);
@@ -72,8 +78,12 @@ void	draw(t_map map)
 		if (d.end_line > WIN_WIDTH)
 			d.end_line = WIN_WIDTH - 1;
 		color = COLOR;
-		if (d.side == 1)
+		if (d.side == 2 || d.side == 3)
 			color = color / 2;
+		// if (d.side == 2)
+		// 	color = RED;
+		// if (d.side == 3)
+		// 	color = RED / 2;
 		draw_line(map, x, d.start_line, d.end_line, color);
 		x ++;
 	}

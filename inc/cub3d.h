@@ -17,11 +17,15 @@
 # define COLOR 0x00F8F4F5
 # define GREEN 0xAA00FF00
 # define BLUE 0xAA0000FF
-# define RED 0xAAFF0000
+# define RED 0x33DD0000
 # define WHITE 0x00000000
 
 # define SPEED 0.05
 # define ROTATE 0.05
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
 
 # define ESC 53
 # define ARROW_LEFT 123

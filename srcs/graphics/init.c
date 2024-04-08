@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/07 14:45:18 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/07 14:52:47 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ t_map	init_map(t_parser pars, t_img img)
 	map.ypos = pars.y_player;
 	printf("xpos: %i, ypos: %i\n", (int) map.xpos, (int) map.ypos);
 	init_dirs(&map, pars);
-	map.rows = pars.rows - 1;
-	map.cols = pars.columms + 1; // shoud be smth dif
+	map.rows = pars.rows;
+	map.cols = pars.columms;
 	map.iminimap = i_minimap(map);
 	map.board = pars.board;
 	map.img = &img;

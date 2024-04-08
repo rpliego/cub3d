@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:26 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/02 17:29:54 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/07 15:17:32 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void	key_hook_move(t_map *map)
 	}
 	if (map->mov->a_key == 1)
 	{
-		if (map->board[(int) (map->xpos - map->xdir * SPEED)][(int) map->ypos] == '0')
-			map->xpos -= map->xdir * SPEED;
-		if (map->board[(int) map->xpos][(int) (map->ypos + map->ydir * SPEED)] == '0')
-			 map->ypos += map->ydir * SPEED;
+		if (map->board[(int) (map->xpos - map->xplane * SPEED)][(int) map->ypos] == '0')
+			map->xpos -= map->xplane * SPEED;
+		if (map->board[(int) map->xpos][(int) (map->ypos + map->yplane * SPEED)] == '0')
+			 map->ypos += map->yplane * SPEED;
 	}
 	if (map->mov->s_key == 1)
 	{
@@ -88,10 +88,10 @@ void	key_hook_move(t_map *map)
 	}
 	if (map->mov->d_key == 1)
 	{
-		if (map->board[(int) (map->xpos + map->xdir * SPEED)][(int) map->ypos] == '0')
-			map->xpos += map->xdir * SPEED;
-		if (map->board[(int) map->xpos][(int) (map->ypos - map->ydir * SPEED)] == '0')
-			 map->ypos -= map->ydir * SPEED;
+		if (map->board[(int) (map->xpos + map->xplane * SPEED)][(int) map->ypos] == '0')
+			map->xpos += map->xplane * SPEED;
+		if (map->board[(int) map->xpos][(int) (map->ypos - map->yplane * SPEED)] == '0')
+			 map->ypos -= map->yplane * SPEED;
 	}
 }
 
