@@ -1,0 +1,27 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	  {
+		"name": "C Debug with LLDB",
+		"type": "cppdbg",
+		"request": "launch",
+		"program": "${workspaceFolder}/cub3d", // Update this path
+		"args": ["maps/valid/crazy_info2.cub"],
+		"stopAtEntry": false,
+		"cwd": "${workspaceFolder}",
+		"environment": [],
+		"externalConsole": false,
+		"MIMode": "lldb",
+		"setupCommands": [
+		  {
+			"description": "Enable pretty-printing for lldb",
+			"text": "-enable-pretty-printing",
+			"ignoreFailures": true
+		  }
+		]
+	  }
+	]
+  }
+  
+  
+  

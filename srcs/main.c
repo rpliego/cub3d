@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:55:21 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/04 19:21:14 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/08 20:01:27 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,30 @@ int	render(t_map *map)
 int	main(int ac, char **av)
 {
 	t_parser	pars;
-	//t_img		img;
-	//t_map		map;
+	t_img		img;
+	t_map		map;
+	t_move		mov;
 
 	if (ac != 2)
 		return(error_parser("WaTh??"));
 	check_extension(av[1]);
 	parser(av[1], &pars);
 
-	// img = init_img();
-	// map = init_map(pars, img);
+	init_img(&img);
+	init_map(pars, img, &map, &mov);
+	map.img = &img;
+	map.mov = &mov;
+	// char			*addr;
+	printf("|%s|\n", map.img->addr);
 	// printf("rows: %i, cols: %i\n", map.rows, map.cols);
 	// printf("i = %i\n", map.iminimap);
-	// mlx_hook(img.win, 2, (1L << 0), &key_hook, &map);
-	// mlx_hook(img.win, 3, (1L << 0), &key_hook_release, &map);
-	// mlx_hook(img.win, 17, 0, &ft_close, &map);
-	// mlx_loop_hook(img.mlx, render, &map);
-	// mlx_loop(img.mlx);
+	printf("|%s|\n", map.img->addr);
+	mlx_hook(img.win, 2, (1L << 0), &key_hook, &map);
+	mlx_hook(img.win, 3, (1L << 0), &key_hook_release, &map);
+	mlx_hook(img.win, 17, 0, &ft_close, &map);
+	mlx_loop_hook(img.mlx, render, &map);
+	printf("%p|\n", img.mlx);
+	printf("|%s|\n", map.img->addr);
+	mlx_loop(map.img->mlx);
 	return (0);
 }

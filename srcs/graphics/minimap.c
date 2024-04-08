@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:00:50 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/03 14:31:15 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:41:32 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	draw_minimap(t_map map, int x, int y, unsigned int color)
 	}
 }
 
-int		i_minimap(t_map map)
+int		i_minimap(t_map *map)
 {
 	int	i;
 	int	max;
 
-	if (map.rows > map.cols)
-		max = map.rows;
+	if (map->rows > map->cols)
+		max = map->rows;
 	else
-		max = map.cols;
+		max = map->cols;
 	i = 1;
 	while (max * i < 100)
 		i ++;
