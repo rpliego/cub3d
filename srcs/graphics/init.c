@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/07 14:52:47 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/09 17:23:50 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,14 @@ void	init_dirs(t_map *map, t_parser pars)
 // 	}
 // }
 
+void	save_texture(t_map *map, t_texture *tex, char *path)
+{
+	tex->img = mlx_xpm_file_to_image(map->img->mlx, path, &tex->width, &tex->height);
+	// protect??
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bits_per_pixel, &tex->line_len, &tex->endian);
+	//protect??
+}
+
 t_move	init_moves(void)
 {
 	t_move	mov;
@@ -90,8 +98,8 @@ t_map	init_map(t_parser pars, t_img img)
 	t_map	map;
 	t_move	mov;
 
-	map.xpos = pars.x_player;
-	map.ypos = pars.y_player;
+	map.xpos = pars.x_player + 0.5;
+	map.ypos = pars.y_player + 0.5;
 	printf("xpos: %i, ypos: %i\n", (int) map.xpos, (int) map.ypos);
 	init_dirs(&map, pars);
 	map.rows = pars.rows;
@@ -101,6 +109,10 @@ t_map	init_map(t_parser pars, t_img img)
 	map.img = &img;
 	mov = init_moves();
 	map.mov = &mov;
+	save_texture(&map, &map.tex[NO], pars.north);
+	save_texture(&map, &map.tex[SO], pars.south);
+	save_texture(&map, &map.tex[WE], pars.west);
+	save_texture(&map, &map.tex[EA], pars.east);
 	return (map);
 }
 

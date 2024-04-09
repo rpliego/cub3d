@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:55:21 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/07 14:49:10 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/09 13:40:11 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int ac, char **av)
 	img = init_img();
 	map = init_map(pars, img);
 	printf("rows: %i, cols: %i\n", map.rows, map.cols);
-	printf("i = %i\n", map.iminimap);
+	printf("west tex: %s\n", pars.west);
 	mlx_hook(img.win, 2, (1L << 0), &key_hook, &map);
 	mlx_hook(img.win, 3, (1L << 0), &key_hook_release, &map);
 	mlx_hook(img.win, 17, 0, &ft_close, &map);
