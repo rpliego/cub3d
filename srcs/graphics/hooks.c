@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:26 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/02 17:29:54 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/09 17:54:44 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,31 +67,31 @@ void	key_hook_move(t_map *map)
 {
 	if (map->mov->w_key == 1)
 	{
-		if (map->board[(int) (map->xpos + map->xdir * SPEED)][(int) map->ypos] == '0')
+		if (map->board[(int) (map->xpos + map->xdir * SPEED)][(int) map->ypos] != '1')
 			map->xpos += map->xdir * SPEED;
-		if (map->board[(int) map->xpos][(int) (map->ypos + map->ydir * SPEED)] == '0')
+		if (map->board[(int) map->xpos][(int) (map->ypos + map->ydir * SPEED)] != '1')
 			 map->ypos += map->ydir * SPEED;
 	}
 	if (map->mov->a_key == 1)
 	{
-		if (map->board[(int) (map->xpos - map->xdir * SPEED)][(int) map->ypos] == '0')
-			map->xpos -= map->xdir * SPEED;
-		if (map->board[(int) map->xpos][(int) (map->ypos + map->ydir * SPEED)] == '0')
-			 map->ypos += map->ydir * SPEED;
+		if (map->board[(int) (map->xpos - map->ydir * SPEED)][(int) map->ypos] != '1')
+			map->xpos -= map->ydir * SPEED;
+		if (map->board[(int) map->xpos][(int) (map->ypos + map->xdir * SPEED)] != '1')
+			 map->ypos += map->xdir * SPEED;
 	}
 	if (map->mov->s_key == 1)
 	{
-		if (map->board[(int) (map->xpos - map->xdir * SPEED)][(int) map->ypos] == '0')
+		if (map->board[(int) (map->xpos - map->xdir * SPEED)][(int) map->ypos] != '1')
 			map->xpos -= map->xdir * SPEED;
-		if (map->board[(int) map->xpos][(int) (map->ypos - map->ydir * SPEED)] == '0')
+		if (map->board[(int) map->xpos][(int) (map->ypos - map->ydir * SPEED)] != '1')
 			 map->ypos -= map->ydir * SPEED;
 	}
 	if (map->mov->d_key == 1)
 	{
-		if (map->board[(int) (map->xpos + map->xdir * SPEED)][(int) map->ypos] == '0')
-			map->xpos += map->xdir * SPEED;
-		if (map->board[(int) map->xpos][(int) (map->ypos - map->ydir * SPEED)] == '0')
-			 map->ypos -= map->ydir * SPEED;
+		if (map->board[(int) (map->xpos + map->ydir * SPEED)][(int) map->ypos] != '1')
+			map->xpos += map->ydir * SPEED;
+		if (map->board[(int) map->xpos][(int) (map->ypos - map->xdir * SPEED)] != '1')
+			 map->ypos -= map->xdir * SPEED;
 	}
 }
 

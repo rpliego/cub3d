@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:00:50 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/08 19:41:32 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/09 19:15:27 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,23 @@ void	draw_minimap(t_map map, int x, int y, unsigned int color)
 		k = 0;
 		while (k < i)
 		{
-			my_mlx_pixel_put(map.img, x * i + j, y * i + k, color);
+			if (map.board[y][x] != '1' && map.board[y][x] != '~')
+				my_mlx_pixel_put(map.img, x * i + j, y * i + k, color);
 			k ++;
 		}
 		j ++;
 	}
 }
 
-int		i_minimap(t_map *map)
+int		i_minimap(t_map map)
 {
 	int	i;
 	int	max;
 
-	if (map->rows > map->cols)
-		max = map->rows;
+	if (map.rows > map.cols)
+		max = map.rows;
 	else
-		max = map->cols;
+		max = map.cols;
 	i = 1;
 	while (max * i < 100)
 		i ++;
@@ -52,13 +53,13 @@ unsigned int	set_color(t_map map, int x, int y)
 {
 	unsigned int	color;
 
-	color = 0;
-	if (x == (int) map.xpos && y == (int) map.ypos)
+	color = COLOR;
+	if (y == (int) map.xpos && x == (int) map.ypos)
 		color = RED;
-	else if (map.board[x][y] == '0')
-		color = BLACK;
-	else if (map.board[x][y] == '1')
-		color = WHITE;
+	// else if (map.board[y][x] == '1')
+	// 	color = BLACK;
+	// else if (map.board[y][x] == '0')
+	// 	color = COLOR;
 	return (color);
 }
 
@@ -69,11 +70,10 @@ void	minimap(t_map map)
 	unsigned int	color;
 	
 	x = 0;
-	y = 0;
-	while (x < map.rows + 1)
+	while (x < map.cols)
 	{
 		y = 0;
-		while (y < map.cols)
+		while (y < map.rows)
 		{
 			color = set_color(map, x, y);
 			draw_minimap(map, x, y, color);

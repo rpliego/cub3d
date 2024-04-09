@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:27:55 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/06 18:19:11 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/07 14:52:16 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	parser(char *file, t_parser *pars)
 	// x = -1;
 	// while (pars->board[++x])
 	// 	printf("%s\n", pars->board[x]);
-	// printf("rows->%i\ncols->%i\n", pars->rows, pars->columms);
+	printf("~~~rows->%i\ncols->%i\n", pars->rows, pars->columms);
 	// free(pars->north);
 	// free(pars->south);
 	// free(pars->west);

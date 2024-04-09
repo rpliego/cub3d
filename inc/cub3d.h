@@ -17,11 +17,15 @@
 # define COLOR 0x00F8F4F5
 # define GREEN 0xAA00FF00
 # define BLUE 0xAA0000FF
-# define RED 0xAAFF0000
+# define RED 0x33DD0000
 # define WHITE 0x00000000
 
 # define SPEED 0.05
 # define ROTATE 0.05
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
 
 # define ESC 53
 # define ARROW_LEFT 123
@@ -70,20 +74,32 @@ typedef struct s_move
 	int	arrow_right;
 }				t_move;
 
+typedef struct	s_texture
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}			t_texture;
+
 typedef struct s_map
 {
-	float	xpos;
-	float	ypos;
-	float	xdir;
-	float	ydir;
-	float	xplane;
-	float	yplane;
-	int		rows;
-	int		cols;
-	int		iminimap;
-	char	**board;
-	t_img	*img;
-	t_move	*mov;
+	float		xpos;
+	float		ypos;
+	float		xdir;
+	float		ydir;
+	float		xplane;
+	float		yplane;
+	int			rows;
+	int			cols;
+	int			iminimap;
+	char		**board;
+	t_img		*img;
+	t_move		*mov;
+	t_texture	tex[4];
 }				t_map;
 
 typedef struct s_data
@@ -105,6 +121,10 @@ typedef struct s_data
 	int		height_line;
 	int		start_line;
 	int		end_line;
+	float	xwall;
+	int		xtex;
+	float	texstep;
+	float	texpos;
 	t_map	*map;
 }				t_data;
 
@@ -131,12 +151,12 @@ int		check_comma_rgb(char *floor, char *ceiling);
 int		error_parser(char *msg);
 
 //~~~~~~~~~~~~~GRAPHICS~~~~~~~~~~~~~~~~//
-void	init_img(t_img *jesus);
-void	init_map(t_parser pars, t_img img, t_map *map, t_move *mov);
+t_img	init_img();
+t_map	init_map(t_parser pars, t_img img);
 t_data	init_data(t_map map, int x);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw(t_map map);
-int		i_minimap(t_map *map);
+int		i_minimap(t_map map);
 void	minimap(t_map map);
 
 //~~~~~~~~~~~~~HOOKS~~~~~~~~~~~~~~~~//
