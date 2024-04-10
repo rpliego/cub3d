@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/10 17:24:09 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/10 20:25:44 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-t_img	init_img(void)
+void	init_img(t_img *img)
 {
-	t_img	img;
 
-	img.mlx = mlx_init();
-	img.win = mlx_new_window(img.mlx, WIN_WIDTH, WIN_WIDTH, "cub3d");
-	img.img = mlx_new_image(img.mlx, WIN_WIDTH, WIN_WIDTH);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-			&img.line_len, &img.endian);
-	return (img);
+	img->mlx = mlx_init();
+	img->win = mlx_new_window(img->mlx, WIN_WIDTH, WIN_WIDTH, "cub3d");
+	img->img = mlx_new_image(img->mlx, WIN_WIDTH, WIN_WIDTH);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_len, &img->endian);
 }
 
 void	init_dirs(t_map *map, t_parser pars)
@@ -50,47 +48,44 @@ void	init_dirs(t_map *map, t_parser pars)
 
 void	save_texture(t_map *map, t_texture *tex, char *path)
 {
+	printf("path|%s|\n", path);
 	tex->img = mlx_xpm_file_to_image(map->img->mlx, path, &tex->width, &tex->height);
+	if (!tex->img)
+		printf("faileeed\n");
 	// protect??
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bits_per_pixel, &tex->line_len, &tex->endian);
+	if (!tex->addr)
+		printf("faileeed\n");
 	//protect??
 }
 
-t_move	init_moves(void)
+void	init_moves(t_move* mov)
 {
-	t_move	mov;
-
-	mov.w_key = 0;
-	mov.a_key = 0;
-	mov.s_key = 0;
-	mov.d_key = 0;
-	mov.arrow_left = 0;
-	mov.arrow_right = 0;
-	return (mov);
+	mov->w_key = 0;
+	mov->a_key = 0;
+	mov->s_key = 0;
+	mov->d_key = 0;
+	mov->arrow_left = 0;
+	mov->arrow_right = 0;
 }
 
-t_map	init_map(t_parser pars, t_img img)
+void	init_map(t_parser pars, t_map *map, t_move *mov)
 {
-	t_map	map;
-	t_move	mov;
-
-	map.xpos = pars.x_player + 0.5;
-	map.ypos = pars.y_player + 0.5;
-	printf("xpos: %i, ypos: %i\n", (int) map.xpos, (int) map.ypos);
-	init_dirs(&map, pars);
-	map.rows = pars.rows;
-	map.cols = pars.columms;
-	map.iminimap = i_minimap(map);
-	map.board = pars.board;
-	map.img = &img;
-	mov = init_moves();
-	map.mov = &mov;
-	save_texture(&map, &map.tex[NO], pars.north);
-	save_texture(&map, &map.tex[SO], pars.south);
-	save_texture(&map, &map.tex[WE], pars.west);
-	save_texture(&map, &map.tex[EA], pars.east);
-	map.pars = &pars;
-	return (map);
+	map->xpos = pars.x_player + 0.5;
+	map->ypos = pars.y_player + 0.5;
+	printf("xpos: %i, ypos: %i\n", (int) map->xpos, (int) map->ypos);
+	init_dirs(map, pars);
+	map->rows = pars.rows - 1;
+	map->cols = pars.columms - 1;
+	map->iminimap = i_minimap(map);
+	map->board = pars.board;
+	init_moves(mov);
+	map->mov = mov;
+	save_texture(map, &map->tex[NO], pars.north);
+	save_texture(map, &map->tex[SO], pars.south);
+	save_texture(map, &map->tex[WE], pars.west);
+	save_texture(map, &map->tex[EA], pars.east);
+	map->pars = &pars;
 }
 
 float	set_delta(float raydir)

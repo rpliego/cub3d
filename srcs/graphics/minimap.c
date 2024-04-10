@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:00:50 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/10 17:54:30 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/10 19:45:06 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ void	draw_minimap(t_map map, int x, int y, unsigned int color)
 	}
 }
 
-int		i_minimap(t_map map)
+int		i_minimap(t_map* map)
 {
 	int	i;
 	int	max;
 
-	if (map.rows > map.cols)
-		max = map.rows;
+	if (map->rows > map->cols)
+		max = map->rows;
 	else
-		max = map.cols;
+		max = map->cols;
 	i = 1;
 	while (max * i < 100)
 		i ++;
