@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:56:49 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/06 18:15:04 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/10 15:35:29 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	valid_rgb(int *floor, int *ceiling)
 	return (OK);
 }
 
-int	rgb_check(char *floor, char *ceiling)
+int	rgb_check(char *floor, char *ceiling, t_parser *pars)
 {
 	int	int_f[3];
 	int	int_c[3];
@@ -96,6 +96,12 @@ int	rgb_check(char *floor, char *ceiling)
 	}
 	if (valid_rgb(int_f, int_c) == KO)
 		return (KO);
+	pars->f_nums[0] = int_f[0];
+	pars->f_nums[1] = int_f[1];
+	pars->f_nums[2] = int_f[2];
+	pars->c_nums[0] = int_c[0];
+	pars->c_nums[1] = int_c[1];
+	pars->c_nums[2] = int_c[2];
 	return (OK);
 }
 
@@ -104,6 +110,6 @@ void	validate_info_map(t_parser *pars)
 	trim_info(pars);
 	if (path_textures(pars) == KO)
 		error_parser("Wrong path to textures");
-	if (rgb_check(pars->floor, pars->ceiling) == KO)
+	if (rgb_check(pars->floor, pars->ceiling, pars) == KO)
 		error_parser("Invalid rgb");
 }

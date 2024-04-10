@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:36 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/09 17:07:25 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/10 16:24:51 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	tex_color(t_texture tex, int xtex, int ytex)
 
 	pix = tex.addr + (ytex * tex.line_len + xtex * (tex.bits_per_pixel / 8));
 	return (*(int *)pix);
+}
+
+int	f_c_color(int *rgb)
+{
+	return((rgb[0] << 16) + (rgb[1] << 8) + (rgb[2]));
 }
 
 void	draw_line(t_map map, int x, t_data d)
@@ -33,39 +38,17 @@ void	draw_line(t_map map, int x, t_data d)
 			d.texpos += d.texstep;
 		}
 		else if (y < d.start_line)
-			my_mlx_pixel_put(map.img, x, y, BLUE);
+			my_mlx_pixel_put(map.img, x, y, f_c_color(map.pars->c_nums));
 		else if (y > d.end_line)
-			my_mlx_pixel_put(map.img, x, y, GREEN);
+			my_mlx_pixel_put(map.img, x, y, f_c_color(map.pars->f_nums));
 		y ++;
 	}
 }
-
-// void	draw_line(t_map map, int x, int start, int end, unsigned int color)
-// {
-// 	int	y;
-
-// 	y = 0;
-// 	while (y < WIN_WIDTH)
-// 	{
-// 		// if (x < map.cols * map.iminimap && y < map.rows * map.iminimap)
-// 		// 	;
-// 		if (y >= start && y <= end)
-// 			my_mlx_pixel_put(map.img, x, y, color);
-// 		else if (y < start)
-// 			my_mlx_pixel_put(map.img, x, y, BLUE);
-// 		else if (y > end)
-// 			my_mlx_pixel_put(map.img, x, y, GREEN);
-// 		else
-// 			my_mlx_pixel_put(map.img, x, y, BLACK);
-// 		y ++;
-// 	}
-// }
 
 void	draw(t_map map)
 {
 	int				x;
 	t_data			d;
-	//unsigned int	color;
 
 	x = 0;
 	while (x < WIN_WIDTH)

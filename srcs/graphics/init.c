@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/09 17:23:50 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/10 15:49:57 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ t_map	init_map(t_parser pars, t_img img)
 	save_texture(&map, &map.tex[SO], pars.south);
 	save_texture(&map, &map.tex[WE], pars.west);
 	save_texture(&map, &map.tex[EA], pars.east);
+	map.pars = &pars;
 	return (map);
 }
 

@@ -15,6 +15,7 @@
 # define WIN_WIDTH 1000
 # define BLACK 0xFFFFFFFF
 # define COLOR 0x00F8F4F5
+//# define GREEN 0x00DC6400
 # define GREEN 0xAA00FF00
 # define BLUE 0xAA0000FF
 # define RED 0x33DD0000
@@ -46,7 +47,9 @@ typedef struct s_parser
 	char *west;
 	char *east;
 	char *floor;
+	int		f_nums[3];
 	char *ceiling;
+	int		c_nums[3];
 	char player;
 	int	x_player;
 	int	y_player;
@@ -100,6 +103,7 @@ typedef struct s_map
 	t_img		*img;
 	t_move		*mov;
 	t_texture	tex[4];
+	t_parser	*pars;
 }				t_map;
 
 typedef struct s_data
