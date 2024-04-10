@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:01:19 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/04 17:15:09 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/10 17:13:16 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	validate_map(t_parser *pars)
 	trim_map(pars);
 	pars->columms = find_n_columms(pars->board) - 1;
 	pars->rows = find_n_rows(pars->board) - 1;
+	if (pars->columms * pars->rows > 100000)
+		error_parser("Map too big");
+	printf("\n~~~~~~~~~~> %i ~~~~~~\n\n", pars->columms * pars->rows);
 	replace_space_in(pars);
 	find_player(pars, pars->board);
 	init_bool(pars, &aux_bool);
