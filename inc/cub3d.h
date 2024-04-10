@@ -15,7 +15,6 @@
 # define WIN_WIDTH 1000
 # define BLACK 0xFFFFFFFF
 # define COLOR 0x00F8F4F5
-//# define GREEN 0x00DC6400
 # define GREEN 0xAA00FF00
 # define BLUE 0xAA0000FF
 # define RED 0x33DD0000
@@ -160,6 +159,11 @@ t_map	init_map(t_parser pars, t_img img);
 t_data	init_data(t_map map, int x);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw(t_map map);
+void	set_hit_side(t_data *d, t_map map);
+void	set_walldist(t_data *d);
+void	set_line(t_data *d);
+void	set_wall_coord(t_data *d, t_map map);
+void	set_tex_coord(t_data *d, t_map map);
 int		i_minimap(t_map map);
 void	minimap(t_map map);
 
@@ -169,5 +173,9 @@ int		key_hook(int key, t_map *map);
 void	key_hook_move(t_map *map);
 void	key_hook_rotate(t_map *map);
 int		key_hook_release(int key, t_map *map);
+void	w_hook(t_map *map);
+void	a_hook(t_map *map);
+void	s_hook(t_map *map);
+void	d_hook(t_map *map);
 
 #endif

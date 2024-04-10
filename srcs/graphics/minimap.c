@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:00:50 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/09 17:34:52 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/10 17:54:30 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ unsigned int	set_color(t_map map, int x, int y)
 	color = COLOR;
 	if (y == (int) map.xpos && x == (int) map.ypos)
 		color = RED;
-	// else if (map.board[y][x] == '1')
-	// 	color = BLACK;
-	// else if (map.board[y][x] == '0')
-	// 	color = COLOR;
 	return (color);
 }
 

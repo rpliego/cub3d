@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/10 15:49:57 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/10 17:24:09 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,6 @@ void	init_dirs(t_map *map, t_parser pars)
 		map->xplane = 1.5 * map->ydir;
 	}
 }
-
-// void	init_dirs(t_map *map, t_parser pars)
-// {
-// 	if (pars.player == 'N' || pars.player == 'S')
-// 	{
-// 		map->xdir = -1; //0
-// 		map->yplane = 1.5; //0
-// 		if (pars.player == 'N')
-// 			map->ydir = 0; //1
-// 		else
-// 			map->ydir = -1;
-// 		map->xplane = 1.5 * map->ydir;
-// 	}
-// 	else if (pars.player == 'E' || pars.player == 'W')
-// 	{
-// 		map->ydir = 0;
-// 		map->xplane = 0;
-// 		if (pars.player == 'E')
-// 			map->xdir = 1;
-// 		else
-// 			map->xdir = -1;
-// 		map->yplane = (-1.5) * map->xdir;
-// 	}
-// }
 
 void	save_texture(t_map *map, t_texture *tex, char *path)
 {
