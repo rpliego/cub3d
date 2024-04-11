@@ -34,7 +34,7 @@ LIBFT_FLAGS = -L$(LIBFT) -lft
 #########
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	${CC} -MMD $(CFLAGS) -c -I inc -Imlx -MMD -I$(LIBFT) $< -o $@
+	${CC} -MMD $(CFLAGS) -c -I inc -Imlx -I$(LIBFT) $< -o $@
 
 all: 
 	@$(MAKE) -C $(MLX_DIR) --no-print-directory

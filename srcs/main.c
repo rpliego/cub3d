@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:55:21 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/11 12:46:02 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/11 14:55:53 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	render(t_map *map)
 	mlx_clear_window(map->img.mlx, map->img.win);
 	key_hook_move(map);
 	key_hook_rotate(map);
-	//minimap(*map);
 	draw(*map);
 	minimap(*map);
 	mlx_put_image_to_window(map->img.mlx, map->img.win, map->img.img, 0, 0);
@@ -32,15 +31,12 @@ int	main(int ac, char **av)
 	t_move		mov;
 
 	if (ac != 2)
-		return(error_parser("Error: Invalid number of arguments"));
+		return(error_parser("Invalid number of arguments"));
 	check_extension(av[1]);
 	parser(av[1], &pars);
-	// printf("C: %i,%u,%i\nF: %i,%i,%i\n", pars.c_nums[0], pars.c_nums[1],
-	// 		pars.c_nums[2], pars.f_nums[0], pars.f_nums[1], pars.f_nums[2]);
 	init_img(&img);
 	map.img = img;
 	map.pars = &pars;
-	printf("rows: %i, cols: %i\n", pars.rows, pars.columms);
 	init_map(pars, &map, &mov);
 	mlx_hook(map.img.win, 2, (1L << 0), &key_hook, &map);
 	mlx_hook(map.img.win, 3, (1L << 0), &key_hook_release, &map);
