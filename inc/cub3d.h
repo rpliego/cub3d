@@ -154,8 +154,8 @@ int		check_comma_rgb(char *floor, char *ceiling);
 int		error_parser(char *msg);
 
 //~~~~~~~~~~~~~GRAPHICS~~~~~~~~~~~~~~~~//
-t_img	init_img(void);
-t_map	init_map(t_parser pars, t_img img);
+void	init_img(t_img *img);
+void	init_map(t_parser pars, t_map *map, t_move *mov);
 t_data	init_data(t_map map, int x);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw(t_map map);
@@ -164,7 +164,7 @@ void	set_walldist(t_data *d);
 void	set_line(t_data *d);
 void	set_wall_coord(t_data *d, t_map map);
 void	set_tex_coord(t_data *d, t_map map);
-int		i_minimap(t_map map);
+int		i_minimap(t_map* map);
 void	minimap(t_map map);
 
 //~~~~~~~~~~~~~HOOKS~~~~~~~~~~~~~~~~//
