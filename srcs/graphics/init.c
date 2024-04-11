@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/11 12:31:04 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/11 14:27:17 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,18 @@ void	init_img(t_img *img)
 {
 
 	img->mlx = mlx_init();
+	if (!img->mlx)
+		error_parser("mlx initialization failed");
 	img->win = mlx_new_window(img->mlx, WIN_WIDTH, WIN_WIDTH, "cub3d");
+	if (!img->win)
+		error_parser("mlx window initialization failed");
 	img->img = mlx_new_image(img->mlx, WIN_WIDTH, WIN_WIDTH);
+	if (!img->img)
+		error_parser("mlx image initialization failed");
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_len, &img->endian);
-}
-
-void	init_dirs(t_map *map, t_parser pars)
-{
-	if (pars.player == 'N' || pars.player == 'S')
-	{
-		map->ydir = 0;
-		map->xplane = 0;
-		if (pars.player == 'S')
-			map->xdir = 1;
-		else
-			map->xdir = -1;
-		map->yplane = (-1.5) * map->xdir;
-	}
-	else if (pars.player == 'E' || pars.player == 'W')
-	{
-		map->xdir = 0;
-		map->yplane = 0;
-		if (pars.player == 'E')
-			map->ydir = 1;
-		else
-			map->ydir = -1;
-		map->xplane = 1.5 * map->ydir;
-	}
-}
-
-void	save_texture(t_map *map, t_texture *tex, char *path)
-{
-	//printf("path|%s|\n", path);
-	tex->img = mlx_xpm_file_to_image(map->img.mlx, path, &tex->width, &tex->height);
-	if (!tex->img)
-		printf("faileeed\n");
-	// protect??
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bits_per_pixel, &tex->line_len, &tex->endian);
-	if (!tex->addr)
-		printf("faileeed\n");
-	//protect??
+	if (!img->addr)
+		error_parser("Getting image address failed");
 }
 
 void	init_moves(t_move* mov)
@@ -73,7 +44,6 @@ void	init_map(t_parser pars, t_map *map, t_move *mov)
 {
 	map->xpos = pars.x_player + 0.5;
 	map->ypos = pars.y_player + 0.5;
-	printf("xpos: %i, ypos: %i\n", (int) map->xpos, (int) map->ypos);
 	init_dirs(map, pars);
 	map->rows = pars.rows - 1;
 	map->cols = pars.columms - 1;
@@ -85,39 +55,6 @@ void	init_map(t_parser pars, t_map *map, t_move *mov)
 	save_texture(map, &map->tex[SO], pars.south);
 	save_texture(map, &map->tex[WE], pars.west);
 	save_texture(map, &map->tex[EA], pars.east);
-	//map->pars = &pars;
-}
-
-float	set_delta(float raydir)
-{
-	if (raydir == 0)
-		return (10000000);
-	else
-		return (fabsf(1 / raydir));
-}
-
-void	set_step_sidedist(t_data *d, t_map map)
-{
-	if (d->xraydir < 0)
-	{
-		d->xstep = -1;
-		d->xsidedist = (map.xpos - d->xmap) * d->xdeltadist;
-	}
-	else
-	{
-		d->xstep = 1;
-		d->xsidedist = (d->xmap + 1.0 - map.xpos) * d->xdeltadist;
-	}
-	if (d->yraydir < 0)
-	{
-		d->ystep = -1;
-		d->ysidedist = (map.ypos - d->ymap) * d->ydeltadist;
-	}
-	else
-	{
-		d->ystep = 1;
-		d->ysidedist = (d->ymap + 1.0 - map.ypos) * d->ydeltadist;
-	}
 }
 
 t_data	init_data(t_map map, int x)
@@ -133,12 +70,5 @@ t_data	init_data(t_map map, int x)
 	d.ydeltadist = set_delta(d.yraydir);
 	d.hit = 0;
 	set_step_sidedist(&d, map);
-	// if (x == 250)
-	// 	printf("xpos and ypos:: %f and %f\n", map.xpos, map.ypos);
-	// if (x == 250)
-	// {
-	// 	printf("sidedist: %f, %f\n", d.xsidedist, d.ysidedist);
-	// 	printf("deltadist: %f, %f\n", d.xdeltadist, d.ydeltadist);
-	// }
 	return (d);
 }

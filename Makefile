@@ -20,7 +20,8 @@ SRC =		srcs/main.c \
 			srcs/graphics/raycasting.c \
 			srcs/graphics/minimap.c \
 			srcs/graphics/draw.c \
-			srcs/graphics/moves.c
+			srcs/graphics/moves.c \
+			srcs/graphics/init_utils.c
 
 
 OBJ = $(SRC:.c=.o)

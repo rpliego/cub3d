@@ -15,8 +15,6 @@
 # define WIN_WIDTH 1000
 # define BLACK 0xFFFFFFFF
 # define COLOR 0x00F8F4F5
-# define GREEN 0xAA00FF00
-# define BLUE 0xAA0000FF
 # define RED 0x33DD0000
 # define WHITE 0x00000000
 
@@ -157,6 +155,10 @@ int		error_parser(char *msg);
 void	init_img(t_img *img);
 void	init_map(t_parser pars, t_map *map, t_move *mov);
 t_data	init_data(t_map map, int x);
+void	init_dirs(t_map *map, t_parser pars);
+void	save_texture(t_map *map, t_texture *tex, char *path);
+float	set_delta(float raydir);
+void	set_step_sidedist(t_data *d, t_map map);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw(t_map map);
 void	set_hit_side(t_data *d, t_map map);
