@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:00:50 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/10 19:45:06 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/11 12:01:55 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_minimap(t_map map, int x, int y, unsigned int color)
 		while (k < i)
 		{
 			if (map.board[y][x] != '1' && map.board[y][x] != '~')
-				my_mlx_pixel_put(map.img, x * i + j, y * i + k, color);
+				my_mlx_pixel_put(&map.img, x * i + j, y * i + k, color);
 			k ++;
 		}
 		j ++;

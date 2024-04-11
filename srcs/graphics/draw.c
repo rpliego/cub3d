@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:25:38 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/10 20:32:47 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/11 12:42:07 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,22 @@ static int	f_c_color(int *rgb)
 static void	draw_line(t_map map, int x, t_data d)
 {
 	int	y;
+	int	ytex;
 
 	y = 0;
 	while (y < WIN_WIDTH)
 	{
 		if (y >= d.start_line && y <= d.end_line)
 		{
-			my_mlx_pixel_put(map.img, x, y, tex_color(map.tex[d.side],
-				d.xtex, (int) d.texpos));
+			ytex = (int) d.texpos & (map.tex[d.side].height - 1);
+			my_mlx_pixel_put(&map.img, x, y, tex_color(map.tex[d.side],
+				d.xtex, ytex));
 			d.texpos += d.texstep;
 		}
 		else if (y < d.start_line)
-			my_mlx_pixel_put(map.img, x, y, f_c_color(map.pars->c_nums));
+			my_mlx_pixel_put(&map.img, x, y, f_c_color(map.pars->c_nums));
 		else if (y > d.end_line)
-			my_mlx_pixel_put(map.img, x, y, f_c_color(map.pars->f_nums));
+			my_mlx_pixel_put(&map.img, x, y, f_c_color(map.pars->f_nums));
 		y ++;
 	}
 }

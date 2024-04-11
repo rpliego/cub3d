@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/10 20:25:44 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/11 12:31:04 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	init_dirs(t_map *map, t_parser pars)
 
 void	save_texture(t_map *map, t_texture *tex, char *path)
 {
-	printf("path|%s|\n", path);
-	tex->img = mlx_xpm_file_to_image(map->img->mlx, path, &tex->width, &tex->height);
+	//printf("path|%s|\n", path);
+	tex->img = mlx_xpm_file_to_image(map->img.mlx, path, &tex->width, &tex->height);
 	if (!tex->img)
 		printf("faileeed\n");
 	// protect??
@@ -85,7 +85,7 @@ void	init_map(t_parser pars, t_map *map, t_move *mov)
 	save_texture(map, &map->tex[SO], pars.south);
 	save_texture(map, &map->tex[WE], pars.west);
 	save_texture(map, &map->tex[EA], pars.east);
-	map->pars = &pars;
+	//map->pars = &pars;
 }
 
 float	set_delta(float raydir)

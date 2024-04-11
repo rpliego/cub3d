@@ -100,7 +100,7 @@ typedef struct s_map
 	int			iminimap;
 	char		**board;
 	t_img		img;
-	t_move		mov;
+	t_move		*mov;
 	t_texture	tex[4];
 	t_parser	*pars;
 }				t_map;

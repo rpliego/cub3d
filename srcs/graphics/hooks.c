@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:26 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/10 18:07:38 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/11 12:00:56 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_close(t_map *map)
 {
-	mlx_destroy_window(map->img->mlx, map->img->win);
+	mlx_destroy_window(map->img.mlx, map->img.win);
 	exit(1);
 	return (0);
 }

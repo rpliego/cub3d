@@ -6,7 +6,7 @@
 /*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:36 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/10 17:45:03 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/11 12:41:59 by dkreise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,4 @@ void	set_tex_coord(t_data *d, t_map map)
 	d->texstep = (float) map.tex[d->side].height / d->height_line;
 	d->texpos = (d->start_line - WIN_WIDTH / 2 +
 		d->height_line / 2) * d->texstep;
-	if (d->height_line < WIN_WIDTH)
-		d->texpos = 0;
 }
