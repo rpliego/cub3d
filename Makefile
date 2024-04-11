@@ -1,54 +1,64 @@
 NAME = cub3d
-CC = cc
-CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+
+#########
 RM = rm -rf
+CC = cc
+CFLAGS = -Werror -Wextra -Wall #-g -fsanitize=address
+#########
 
+#########
+FILES = main parser utils_parser utils_parser_2 extract_map errors
 
-SRC =		srcs/main.c \
-			srcs/utils/errors.c \
-			srcs/utils/utils_parser.c \
-			srcs/utils/utils_parser_2.c \
-			srcs/parser/extract_map.c \
-			srcs/parser/parser.c \
-			srcs/parser/check_elements.c \
-			srcs/parser/clean_map.c \
-			srcs/parser/validate_info.c \
-			srcs/parser/validate_map.c \
-			srcs/parser/dfs.c \
-			srcs/graphics/init.c \
-			srcs/graphics/hooks.c \
-			srcs/graphics/raycasting.c \
-			srcs/graphics/minimap.c \
-			srcs/graphics/draw.c \
-			srcs/graphics/moves.c \
-			srcs/graphics/init_utils.c
+FILES += check_elements clean_map validate_info validate_map dfs
 
+FILES += init init_utils hooks raycasting minimap draw moves
 
-OBJ = $(SRC:.c=.o)
+SRC = $(addsuffix .c, $(FILES))
+
+vpath %.c srcs srcs/parser srcs/graphics srcs/utils
+#########
+
+#########
+OBJ_DIR = objs
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+DEP = $(addsuffix .d, $(basename $(OBJ)))
+#########
+
+########
 MLX_DIR = inc/mlx
-LIBFT_DIR = inc/libft
-INCLUDE = inc/cub3d.h
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+LIBFT = inc/libft
+LIBFT_FLAGS = -L$(LIBFT) -lft
+########
 
-all:
-	@$(MAKE) -C $(LIBFT_DIR)
+#########
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(@D)
+	${CC} -MMD $(CFLAGS) -c -I inc -Imlx -MMD -I$(LIBFT) $< -o $@
+
+all: 
 	@$(MAKE) -C $(MLX_DIR) --no-print-directory
-	@$(MAKE) $(NAME) --no-print-directory
+	@$(MAKE) -C $(LIBFT) --no-print-directory
+	$(MAKE) $(NAME) --no-print-directory
 
-$(NAME): $(OBJ) $(INCLUDE) Makefile
-	$(CC) $(CFLAGS) $(OBJ) -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_DIR)/libft.a
-
-%.o: %.c $(INCLUDE)
-	$(CC) $(CFLAGS) -I$(MLX_DIR) -I$(LIBFT_DIR) -c $< -o $@
+$(NAME): $(OBJ) Makefile
+	$(CC) $(CFLAGS) $(OBJ) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME)
+	@echo "EVERYTHING DONE  "
 
 clean:
-	$(RM) $(OBJ)
-	@make clean -C $(MLX_DIR)
-	@make clean -C $(LIBFT_DIR)
+	$(MAKE) clean -C $(MLX_DIR) --no-print-directory
+	$(MAKE) clean -C $(LIBFT) --no-print-directory
+	$(RM) $(OBJ) $(DEP) --no-print-directory
+	$(RM) -r $(OBJ_DIR) --no-print-directory
+	@echo "OBJECTS REMOVED   "
 
 fclean: clean
-	@make fclean -C $(LIBFT_DIR)
-	$(RM) $(NAME)
+	$(MAKE) fclean -C $(LIBFT)
+	$(RM) $(NAME) --no-print-directory
+	@echo "EVERYTHING REMOVED   "
 
-re: fclean all
+re:	fclean all
 
 .PHONY: all clean fclean re
+
+-include $(DEP)
