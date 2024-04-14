@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:20:35 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/04 14:35:46 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:51:52 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	check_extension(char *str)
 	i = ft_strlen(str) - 1;
 	if (i < 4)
 		error_parser("Invalid file, try a .cub file");
-	if (str[i] != 'b' || str[i - 1] != 'u' || str[i - 2] != 'c' ||
-		str[i - 3] != '.' || str[i - 4] == '.')
+	if (str[i] != 'b' || str[i - 1] != 'u' || str[i - 2] != 'c'
+		|| str[i - 3] != '.' || str[i - 4] == '.')
 		error_parser("Invalid file, try a .cub file");
 }
 
@@ -47,8 +47,6 @@ void	replace_space_in(t_parser *pars)
 	while (pars->board[i])
 	{
 		j = 0;
-		// while (pars->board[i][j] && pars->board[i][j] == ' ')
-		// 	j++;
 		while (pars->board[i][j])
 		{
 			if (pars->board[i][j] == ' ')
@@ -57,4 +55,12 @@ void	replace_space_in(t_parser *pars)
 		}
 		i++;
 	}
+}
+
+int	error_parser(char *msg)
+{
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putchar_fd('\n', 2);
+	exit(1);
 }

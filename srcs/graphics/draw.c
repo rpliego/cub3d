@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:25:38 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/11 12:42:07 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:53:23 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 static int	tex_color(t_texture tex, int xtex, int ytex)
 {
-	char *pix;
+	char	*pix;
 
 	pix = tex.addr + (ytex * tex.line_len + xtex * (tex.bits_per_pixel / 8));
 	return (*(int *)pix);
@@ -30,7 +30,7 @@ static int	tex_color(t_texture tex, int xtex, int ytex)
 
 static int	f_c_color(int *rgb)
 {
-	return((rgb[0] << 16) + (rgb[1] << 8) + (rgb[2]));
+	return ((rgb[0] << 16) + (rgb[1] << 8) + (rgb[2]));
 }
 
 static void	draw_line(t_map map, int x, t_data d)
@@ -45,7 +45,7 @@ static void	draw_line(t_map map, int x, t_data d)
 		{
 			ytex = (int) d.texpos & (map.tex[d.side].height - 1);
 			my_mlx_pixel_put(&map.img, x, y, tex_color(map.tex[d.side],
-				d.xtex, ytex));
+					d.xtex, ytex));
 			d.texpos += d.texstep;
 		}
 		else if (y < d.start_line)

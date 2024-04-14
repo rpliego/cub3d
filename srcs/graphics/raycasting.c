@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:36 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/11 12:41:59 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:54:52 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	set_walldist(t_data *d)
 
 void	set_line(t_data *d)
 {
-	d->height_line = (int) (WIN_WIDTH / d->walldist) / 3;
+	d->height_line = (int)(WIN_WIDTH / d->walldist) / 3;
 	d->start_line = WIN_WIDTH / 2 - d->height_line / 2;
 	if (d->start_line < 0)
 		d->start_line = 0;
@@ -69,10 +69,10 @@ void	set_wall_coord(t_data *d, t_map map)
 
 void	set_tex_coord(t_data *d, t_map map)
 {
-	d->xtex = (int) (d->xwall * (float) map.tex[d->side].width);
+	d->xtex = (int)(d->xwall * (float) map.tex[d->side].width);
 	if (d->side == NO || d->side == EA)
 		d->xtex = map.tex[d->side].width - d->xtex - 1;
 	d->texstep = (float) map.tex[d->side].height / d->height_line;
-	d->texpos = (d->start_line - WIN_WIDTH / 2 +
-		d->height_line / 2) * d->texstep;
+	d->texpos = (d->start_line - WIN_WIDTH / 2
+			+ d->height_line / 2) * d->texstep;
 }

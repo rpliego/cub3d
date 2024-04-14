@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:55:21 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/11 14:55:53 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:55:20 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	t_move		mov;
 
 	if (ac != 2)
-		return(error_parser("Invalid number of arguments"));
+		return (error_parser("Invalid number of arguments"));
 	check_extension(av[1]);
 	parser(av[1], &pars);
 	init_img(&img);

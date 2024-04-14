@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:22 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/05 09:15:19 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:36:11 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	check_no_so(t_parser *pars, char *parse)
 			error_parser("Duplicated info");
 		pars->n_elements += 1;
 	}
-	else if(parse[i] == 'S' && parse[i + 1] == 'O' && parse[i + 2] == ' ')
+	else if (parse[i] == 'S' && parse[i + 1] == 'O' && parse[i + 2] == ' ')
 	{
 		if (pars->south == NULL)
 			pars->south = ft_substr(parse, i + 3, ft_strlen(parse));
@@ -52,7 +52,7 @@ static void	check_we_ea(t_parser *pars, char *parse)
 			error_parser("Duplicated info");
 		pars->n_elements += 1;
 	}
-	else if(parse[i] == 'E' && parse[i + 1] == 'A' && parse[i + 2] == ' ')
+	else if (parse[i] == 'E' && parse[i + 1] == 'A' && parse[i + 2] == ' ')
 	{
 		if (pars->east == NULL)
 			pars->east = ft_substr(parse, i + 3, ft_strlen(parse));
@@ -77,7 +77,7 @@ static void	check_f_c(t_parser *pars, char *parse)
 			error_parser("Duplicated info");
 		pars->n_elements += 1;
 	}
-	else if(parse[i] == 'C' && parse[i + 1] == ' ')
+	else if (parse[i] == 'C' && parse[i + 1] == ' ')
 	{
 		if (pars->ceiling == NULL)
 			pars->ceiling = ft_substr(parse, i + 2, ft_strlen(parse));
@@ -106,8 +106,9 @@ int	trash_inside(char *str)
 int	check_elements(t_parser *pars)
 {
 	int	aux;
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (pars->map[i])
 	{
 		aux = pars->n_elements;

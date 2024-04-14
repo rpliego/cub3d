@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 18:52:27 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/04 14:29:22 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:50:56 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	check_comma_rgb(char *floor, char *ceiling)
 
 	comma_n = 0;
 	i = -1;
-	while(floor[++i])
+	while (floor[++i])
 	{
 		if (floor[i] == ',' && floor[i + 1] != '\0')
 			++comma_n;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:56:49 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/10 15:35:29 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:39:02 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	trim_info(t_parser *pars)
 		pars->ceiling = ft_strtrim(pars->ceiling, " ");
 	if (!pars->north || !pars->south || !pars->west || !pars->east
 		|| !pars->floor || !pars->ceiling)
-	error_parser("Malloc failed");
+		error_parser("Malloc failed");
 }
 
 int	path_textures(t_parser *pars)

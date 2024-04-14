@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:57:41 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/04 15:06:39 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:37:58 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static	int	count_rows(char *file)
 {
-	int	counter;
-	int	 fd;
-	char c;
+	int		counter;
+	int		fd;
+	char	c;
 
 	counter = 1;
 	fd = open(file, O_RDONLY);
@@ -33,13 +33,12 @@ static	int	count_rows(char *file)
 
 void	extract_map(char *file, t_parser *pars)
 {
-	int	fd;
-	char *line;
-	int	i;
+	int		fd;
+	char	*line;
+	int		i;
 
 	i = -1;
 	pars->rows = count_rows(file);
-	//printf("%i\n", pars->rows);
 	if (pars->rows <= 8)
 		error_parser("Map too small");
 	pars->map = ft_calloc((pars->rows + 1), sizeof(char *));

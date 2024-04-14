@@ -7,7 +7,7 @@ CFLAGS = -Werror -Wextra -Wall #-g -fsanitize=address
 #########
 
 #########
-FILES = main parser utils_parser utils_parser_2 extract_map errors
+FILES = main parser utils_parser utils_parser_2 extract_map
 
 FILES += check_elements clean_map validate_info validate_map dfs
 

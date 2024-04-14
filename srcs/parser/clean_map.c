@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:13:12 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/05 13:47:56 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:50:14 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,41 @@ void	valid_characters(char **map, int i)
 	}
 }
 
-char	**find_start_board(t_parser *pars, int start)
+char	**aux_clear(t_parser *pars, int len, int start, char **board)
 {
-	char **board;
-	int	i;
-	int	aux;
-	int	len;
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < len)
+	{
+		j = -1;
+		board[i] = malloc((pars->columms + 1) * sizeof (char));
+		board[i][pars->columms] = '\0';
+		while (++j < pars->columms)
+			board[i][j] = '~';
+	}
+	i = -1;
+	while (++i < len)
+	{
+		j = 0;
+		while (j < (int)ft_strlen(pars->map[start]))
+		{
+			if (pars->map[start][j] != ' ')
+				board[i][j] = pars->map[start][j];
+			j++;
+		}
+		start++;
+	}
+	return (board);
+}
+
+char	**clear_board(t_parser *pars, int start)
+{
+	int		aux;
+	int		len;
+	int		x;
+	char	**board;
 
 	len = 0;
 	aux = start;
@@ -51,49 +80,14 @@ char	**find_start_board(t_parser *pars, int start)
 	aux -= 1;
 	while (pars->map[++aux] && trash_inside(pars->map[aux]) == TRUE)
 		len++;
+	x = start - 1;
+	while (pars->map[++x])
+		pars->map[x] = ft_strtrim(pars->map[x], "\n");
 	board = malloc((len + 1) * sizeof(char *));
 	if (!board)
 		error_parser("Malloc failed");
 	board[len] = NULL;
-	i = -1;
-	int	j;
-	while (++i < len)
-	{
-		// board[i] = ft_strdup(pars->map[start]);
-		// if (!board[i])
-		// 	error_parser("Malloc failed");
-		j = -1;
-		//printf("columms-->%i\n", pars->columms);
-		board[i] = malloc((pars->columms + 1) * sizeof (char));
-		board[i][pars->columms] = '\0';
-		while (++j < pars->columms)
-		{
-			//printf("%i\n", j);
-			board[i][j] = '~';
-		}
-	}
-	int x = start - 1;
-	while (pars->map[++x])
-		pars->map[x] = ft_strtrim(pars->map[x], "\n");
-	x = start - 1;
-	// while (pars->map[++x])
-	// 	printf("%s\n", pars->map[x]);
-	// printf("\n\n");
-	i = 0;
-	while (i < len)
-	{
-		j = 0;
-		while (j < (int)ft_strlen(pars->map[start]))
-		{
-			if (pars->map[start][j] != ' ')
-				board[i][j] = pars->map[start][j];
-			j++;
-		}
-		i++;
-		start++;
-	}
-	//board[len] = NULL;
-	return (board);
+	return (aux_clear(pars, len, start, board));
 }
 
 void	find_extra_map(t_parser *pars, int i)
@@ -112,12 +106,7 @@ void	find_extra_map(t_parser *pars, int i)
 
 void	clean_map(t_parser *pars, int i)
 {
-	find_extra_map(pars, i); //doingggg!!!!!!!!!
+	find_extra_map(pars, i);
 	valid_characters(pars->map, i);
-	pars->board = find_start_board(pars, i);
-	
-	// int	x = -1;
-	// while (pars->board[++x])
-	// 	printf("%s\n", pars->board[x]);
-
+	pars->board = clear_board(pars, i);
 }

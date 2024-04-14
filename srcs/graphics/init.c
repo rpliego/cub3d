@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkreise <dkreise@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:14:44 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/11 14:27:17 by dkreise          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:53:46 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_img(t_img *img)
 {
-
 	img->mlx = mlx_init();
 	if (!img->mlx)
 		error_parser("mlx initialization failed");
@@ -30,7 +29,7 @@ void	init_img(t_img *img)
 		error_parser("Getting image address failed");
 }
 
-void	init_moves(t_move* mov)
+void	init_moves(t_move *mov)
 {
 	mov->w_key = 0;
 	mov->a_key = 0;

@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:58:39 by dkreise           #+#    #+#             */
-/*   Updated: 2024/04/03 14:28:52 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/14 19:56:09 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_isinset(char c, char const *set)
 	return (0);
 }
 
-static void ft_fillstr(char **trimmed, int len, char *str)
+static void	ft_fillstr(char **trimmed, int len, char *str)
 {
 	int		i;
 

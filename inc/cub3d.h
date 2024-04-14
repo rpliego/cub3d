@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/14 19:31:58 by rpliego           #+#    #+#             */
+/*   Updated: 2024/04/14 19:35:01 by rpliego          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -35,22 +47,22 @@
 
 typedef struct s_parser
 {
-	char **map;
-	int	n_elements;
-	int	rows;
-	int	columms;
-	char *north;
-	char *south;
-	char *west;
-	char *east;
-	char *floor;
+	char	**map;
+	int		n_elements;
+	int		rows;
+	int		columms;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	char	*floor;
 	int		f_nums[3];
-	char *ceiling;
+	char	*ceiling;
 	int		c_nums[3];
-	char player;
-	int	x_player;
-	int	y_player;
-	char **board;
+	char	player;
+	int		x_player;
+	int		y_player;
+	char	**board;
 }		t_parser;
 
 typedef struct s_img
@@ -74,7 +86,7 @@ typedef struct s_move
 	int	arrow_right;
 }				t_move;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	void	*img;
 	char	*addr;
@@ -129,7 +141,6 @@ typedef struct s_data
 	t_map	*map;
 }				t_data;
 
-
 //~~~~~~~~~~~~~PARSER~~~~~~~~~~~~~~~~//
 void	check_extension(char *str);
 void	parser(char *map, t_parser *prser);
@@ -138,7 +149,7 @@ int		check_elements(t_parser *pars);
 void	clean_map(t_parser *pars, int i);
 void	validate_map(t_parser *pars);
 void	validate_info_map(t_parser *pars);
-void	dfs(t_parser *pars, int	x, int y, int *flag, char **aux_bool);
+void	dfs(t_parser *pars, int x, int y, char **aux_bool);
 void	init_bool(t_parser *pars, char ***aux_bool);
 int		find_n_rows(char **map);
 int		find_n_columms(char **map);
@@ -166,7 +177,7 @@ void	set_walldist(t_data *d);
 void	set_line(t_data *d);
 void	set_wall_coord(t_data *d, t_map map);
 void	set_tex_coord(t_data *d, t_map map);
-int		i_minimap(t_map* map);
+int		i_minimap(t_map *map);
 void	minimap(t_map map);
 
 //~~~~~~~~~~~~~HOOKS~~~~~~~~~~~~~~~~//
