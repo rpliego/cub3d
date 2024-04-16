@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:20:35 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/14 19:51:52 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/16 17:00:17 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,18 @@ int	error_parser(char *msg)
 	ft_putstr_fd(msg, 2);
 	ft_putchar_fd('\n', 2);
 	exit(1);
+}
+
+int	only_special_char(char **board, int colum, int rows)
+{
+	int	i;
+
+	i = 0;
+	while (i < rows)
+	{
+		if (board[i][colum] != '~')
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }

@@ -1,7 +1,7 @@
-NO textures/Diana.xpm
-SO textures/Diana.xpm
-EA textures/Diana.xpm
-WE textures/Diana.xpm
+NO textures/Diana_small.xpm
+SO textures/Diana_small.xpm
+EA textures/Diana_small.xpm
+WE textures/Diana_small.xpm
 
 C 225,30,0
 F 220,100,0

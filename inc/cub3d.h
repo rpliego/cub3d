@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:31:58 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/14 19:35:01 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/16 16:57:13 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ int		find_n_columms(char **map);
 void	replace_space_in(t_parser *pars);
 void	trim_map(t_parser *pars);
 int		trash_inside(char *str);
+int		only_special_char(char **board, int colum, int rows);
 
 //~~~~~~~~~~~~~UTILS~~~~~~~~~~~~~~~~//
 int		mod_atoi(char *str, int comma);

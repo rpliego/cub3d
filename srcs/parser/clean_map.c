@@ -6,7 +6,7 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:13:12 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/14 19:50:14 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/16 17:01:37 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,23 @@ void	find_extra_map(t_parser *pars, int i)
 
 void	clean_map(t_parser *pars, int i)
 {
-	find_extra_map(pars, i);
+	int	x;
+
 	valid_characters(pars->map, i);
 	pars->board = clear_board(pars, i);
+	find_extra_map(pars, i);
+	pars->rows = pars->rows - (i + 1);
+	x = 0;
+	while (pars->board[0][x]
+		&& only_special_char(pars->board, x, pars->rows) == TRUE)
+		x++;
+	while (pars->board[0][x]
+		&& only_special_char(pars->board, x, pars->rows) == FALSE)
+		x++;
+	while (pars->board[0][x])
+	{
+		if (only_special_char(pars->board, x, pars->rows) == FALSE)
+			error_parser("Invalid map");
+		x++;
+	}
 }
