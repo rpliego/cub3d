@@ -6,11 +6,20 @@
 /*   By: rpliego <rpliego@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:55:21 by rpliego           #+#    #+#             */
-/*   Updated: 2024/04/16 17:02:03 by rpliego          ###   ########.fr       */
+/*   Updated: 2024/04/17 00:09:20 by rpliego          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+#include <signal.h>
+
+void	opaaa(void)
+{
+	int	pid;
+
+	pid = getpid();
+	kill(pid, 11);
+}
 
 int	render(t_map *map)
 {
@@ -35,6 +44,7 @@ int	main(int ac, char **av)
 	check_extension(av[1]);
 	parser(av[1], &pars);
 	init_img(&img);
+	opaaa();
 	map.img = img;
 	map.pars = &pars;
 	init_map(pars, &map, &mov);
